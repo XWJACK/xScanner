@@ -19,4 +19,4 @@
 # MyBlog
 [Mini、哆啦][1]
 
-[1]:	http://www.cnblogs.com/xwjack1554239786/p/5131787.html
+[1]:	http://www.cnblogs.com/xwjack1554239786/

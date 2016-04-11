@@ -2,8 +2,8 @@
 //  TCPTests.swift
 //  xScanner
 //
-//  Created by 许文杰 on 4/11/16.
-//  Copyright © 2016 许文杰. All rights reserved.
+//  Created by XWJACK on 4/11/16.
+//  Copyright © 2016 XWJACK. All rights reserved.
 //
 
 import XCTest

@@ -2,8 +2,8 @@
 //  InterfaceInformation.swift
 //  xSocket
 //
-//  Created by 许文杰 on 3/21/16.
-//  Copyright © 2016 许文杰. All rights reserved.
+//  Created by XWJACK on 3/21/16.
+//  Copyright © 2016 XWJACK. All rights reserved.
 //
 
 import Foundation

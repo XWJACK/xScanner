@@ -2,8 +2,8 @@
 //  WOLTests.swift
 //  xScanner
 //
-//  Created by 许文杰 on 4/10/16.
-//  Copyright © 2016 许文杰. All rights reserved.
+//  Created by XWJACK on 4/10/16.
+//  Copyright © 2016 XWJACK. All rights reserved.
 //
 
 import XCTest
@@ -12,8 +12,7 @@ import XCTest
 class WOLTests: BaseTests {
 
     func testWeakup() {
-        //3C-D9-2B-20-8B-BC
-        let macAddress:[UInt8] = [0x3c, 0xd9, 0x2b, 0x20, 0x8b, 0xbc]
+        let macAddress:[UInt8] = [0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff]
         xWeakOnLAN(locateEthernetInformation[2], destinationMACAddress: macAddress)
     }
 }

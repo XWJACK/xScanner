@@ -12,7 +12,7 @@ import Foundation
 public class ScannerHost {
     
     private var xIpAddress = [in_addr_t]()
-    var delegate:ResultDelegate?
+    weak var delegate:ResultDelegate?
     
     public var ipAddress:[String] {
         //let queue = dispatch_queue_create("com.xwjack.scannerhost.ipaddress", DISPATCH_QUEUE_SERIAL)

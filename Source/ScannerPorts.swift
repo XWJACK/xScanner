@@ -31,7 +31,7 @@ public class ScannerPorts {
         
         for port in 0...65535 {
             dispatch_semaphore_wait(currentSemphore, DISPATCH_TIME_FOREVER)
-            dispatch_group_async(group, queue, {
+            dispatch_group_async(group, queue, { [unowned self] in
                 if xConnectWithTCP(self.ipAddress, UInt16(port)) == true { portOpen.append(UInt16(port)) }
                 dispatch_semaphore_signal(currentSemphore)
             })
@@ -42,5 +42,8 @@ public class ScannerPorts {
     }
     public func xScannerPortsWithUDP() {
         
+    }
+    deinit {
+        print("destory")
     }
 }

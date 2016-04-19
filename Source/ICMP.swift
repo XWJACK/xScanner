@@ -11,7 +11,7 @@ import Foundation
 /**
 *  The struct of ICMP Header
 */
-struct icmp {
+private struct icmp {
     //u_char	icmp_type;		/* type of message, see below */
     var type:UInt8
     //u_char	icmp_code;		/* type sub code */
@@ -41,7 +41,7 @@ fill icmp packet
 - parameter pid:            process id
 - parameter packetSequence: packet Sequence
 */
-func xFillicmpPacket(inout icmpHeader:icmp, _ pid:UInt16, _ packetSequence:UInt16) {
+private func xFillicmpPacket(inout icmpHeader:icmp, _ pid:UInt16, _ packetSequence:UInt16) {
     icmpHeader.code = 0
     icmpHeader.type = 8
     icmpHeader.checkSum = 0

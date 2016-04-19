@@ -9,7 +9,7 @@
 import Foundation
 
 
-func getInterfaceInformationWithString() -> [String:[String]] {
+public func getInterfaceInformationWithString() -> [String:[String]] {
     var information = [String:[String]]()
     
     var ifaddr:UnsafeMutablePointer<ifaddrs> = nil

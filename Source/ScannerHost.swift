@@ -15,17 +15,14 @@ public class ScannerHost {
     weak var delegate:ResultDelegate?
     
     public var ipAddress:[String] {
-        //let queue = dispatch_queue_create("com.xwjack.scannerhost.ipaddress", DISPATCH_QUEUE_SERIAL)
-        //dispatch_sync(queue, {
-            get {
-                var temp = [String]()
-                for i in xIpAddress { temp.append(String.fromCString(inet_ntoa(in_addr(s_addr: i)))!) }
-                return temp
-            }
-            set {
-                for var i = 0; i < newValue.count; i++ { xIpAddress[i] = inet_addr(newValue[i]) }
-            }
-        //})
+        get {
+            var temp = [String]()
+            for i in xIpAddress { temp.append(String.fromCString(inet_ntoa(in_addr(s_addr: i)))!) }
+            return temp
+        }
+        set {
+            for var i = 0; i < newValue.count; i++ { xIpAddress[i] = inet_addr(newValue[i]) }
+        }
     }
     
     init(ipAddress:[in_addr_t], delegate:ResultDelegate?) {
@@ -41,22 +38,21 @@ public class ScannerHost {
         guard xPingPrepare(&socketfd, pid, broadcastIpAddress, 0, timeout) != false else { return }
         
         let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(84)
-        let group = dispatch_group_create()
+        
         while true {
             guard recvfrom(socketfd, receiveBuffer, 84, 0, nil, nil) != -1 else { break }
-            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                let result = xUnicmpPacket(receiveBuffer, pid, 0, 84)
-                if result.0 != false {
-                    if let icmpBlock = block {
-                        icmpBlock(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
-                    }
-                    if let icmpDelegate = delegate {
-                        icmpDelegate.icmpResultDelegate!(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
-                    }
-                }else { print("error") }
-            })
+            
+            let result = xUnicmpPacket(receiveBuffer, pid, 0, 84)
+            if result.0 != false {
+                if let icmpBlock = block {
+                    icmpBlock(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
+                }
+                if let icmpDelegate = delegate {
+                    icmpDelegate.icmpResultDelegate!(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
+                }
+            }else { print("error") }
         }
-        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        
         close(socketfd)
         receiveBuffer.dealloc(84)
     }
@@ -71,21 +67,13 @@ public class ScannerHost {
     
     
     public func xicmpScannerWithAllHost(timeout:Int32? = 5000, block:icmpResultBlock) {
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        //let semaphore = dispatch_semaphore_create(20)
         
         var socketfd:Int32 = 0
         let pid = UInt16(getpid())
         guard xPingSetting(&socketfd, timeout!) == true else { return }
         
         for ipAddr in xIpAddress {
-            //dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-            dispatch_async(queue, {
-                
-                xPingSend(socketfd, pid, ipAddr, 0)
-                
-                //dispatch_semaphore_signal(semaphore)
-            })
+            xPingSend(socketfd, pid, ipAddr, 0)
         }
         
         let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(84)

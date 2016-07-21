@@ -11,8 +11,8 @@ import XCTest
 
 class WOLTests: BaseTests {
 
-    func testWeakup() {
+    func testWakeup() {
         let macAddress:[UInt8] = [0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff]
-        xWeakOnLAN(locateEthernetInformation[2], destinationMACAddress: macAddress)
+        xWakeOnLAN(locateEthernetInformation[2], destinationMACAddress: macAddress)
     }
 }

@@ -6,23 +6,24 @@
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-import Foundation
+
+private let wolPacketSize = 102
 
 /**
-weak a computer
+wake a computer in LAN
 
-- parameter boardcastAddress:      boardcastAddress description
-- parameter destinationMACAddress: destinationMACAddress description
-- parameter port:                  port description
+- parameter boardcastAddress:      Current or Target Computer Boardcast Address
+- parameter destinationMACAddress: Destination MAC Address
+- parameter port:                  Destination Port, Any Port can do, default is 666
 
-- returns: Bool
+- returns: true if success
 */
-public func xWeakOnLAN(boardcastAddress:in_addr_t, destinationMACAddress:[UInt8], port:UInt16? = 666) -> Bool {
+func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPort? = 666) -> Bool {
     guard destinationMACAddress.count == 6 else { return false }
-    
-    let sendBuffer = UnsafeMutablePointer<UInt8>.alloc(102)
+
+    let sendBuffer = UnsafeMutablePointer<UInt8>.alloc(wolPacketSize)
     var buffer = sendBuffer
-    
+
     for _ in 0..<6 {
         buffer.memory = 0xFF
         buffer = buffer.successor()
@@ -31,24 +32,30 @@ public func xWeakOnLAN(boardcastAddress:in_addr_t, destinationMACAddress:[UInt8]
         buffer.memory = destinationMACAddress[i % 6]
         buffer = buffer.successor()
     }
-    
-    var socketfd:Int32 = 0
+
+    var socketfd: xSocket = 0
     var destinationIpAddress = sockaddr_in()
-    
-    xUDPSetting(&socketfd, boardcastAddress, port!, &destinationIpAddress)
+
+    if !xUDPSetting(&socketfd, boardcastAddress, port!, &destinationIpAddress) {
+        assertionFailure(ICMPError.sendError.debugDescription)
+        return false
+    }
     var enable = 1
     setsockopt(socketfd, SOL_SOCKET, SO_BROADCAST, &enable, UInt32(sizeofValue(enable)))
-    
+
     let temp = withUnsafePointer(&destinationIpAddress) { (temp) in
         return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
     }
-    
-    guard sendto(socketfd, sendBuffer, 102, 0, temp, UInt32(sizeof(sockaddr_in))) != -1 else { return false }
-    guard sendto(socketfd, sendBuffer, 102, 0, temp, UInt32(sizeof(sockaddr_in))) != -1 else { return false }
-    guard sendto(socketfd, sendBuffer, 102, 0, temp, UInt32(sizeof(sockaddr_in))) != -1 else { return false }
-    guard sendto(socketfd, sendBuffer, 102, 0, temp, UInt32(sizeof(sockaddr_in))) != -1 else { return false }
+
+    // send 4 packets
+    for _ in 0..<4 {
+        if sendto(socketfd, sendBuffer, wolPacketSize, 0, temp, UInt32(sizeof(sockaddr_in))) == -1 {
+            assertionFailure(UDPError.sendError.debugDescription)
+            return false
+        }
+    }
 
     sendBuffer.destroy()
-    sendBuffer.dealloc(102)
+    sendBuffer.dealloc(wolPacketSize)
     return true
 }

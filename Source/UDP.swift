@@ -6,25 +6,46 @@
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-import Foundation
 
-
-func xUDPSetting(inout socketfd:Int32, _ ipAddress:in_addr_t, _ port:UInt16, inout _ destinationIpAddress:sockaddr_in) -> Bool{
+/**
+ setting udp packet
+ 
+ - parameter socketfd:             socketfd
+ - parameter ipAddress:            ipAddress
+ - parameter port:                 port
+ - parameter destinationIpAddress: destinationIpAddress
+ 
+ - returns: true if success
+ */
+func xUDPSetting(inout socketfd: xSocket, _ ipAddress: xIP, _ port: xPort, inout _ destinationIpAddress: sockaddr_in) -> Bool {
     var sendTimeout = timeval(tv_sec: 0, tv_usec: 100)
     
     socketfd = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)
-    guard socketfd != -1 else { return false }
+    if socketfd == -1 {
+        assertionFailure(CommonError.createSocketError.debugDescription)
+        return false
+    }
 
-    guard setsockopt(socketfd, SOL_SOCKET, SO_SNDTIMEO, &sendTimeout, UInt32(sizeof(timeval))) != -1 else { return false }
+    if setsockopt(socketfd, SOL_SOCKET, SO_SNDTIMEO, &sendTimeout, xTimeSize) == -1 {
+        assertionFailure(CommonError.settingSocketError.debugDescription)
+        return false
+    }
     
     xSettingIp(ipAddress, port, &destinationIpAddress)
 
     return true
 }
 
-
-public func xSendUDP(ipAddress:in_addr_t, _ port:UInt16) -> Bool {
-    var socketfd:Int32 = 0
+/**
+ send udp packet
+ 
+ - parameter ipAddress: ipAddress
+ - parameter port:      port
+ 
+ - returns: true if success
+ */
+func xSendUDP(ipAddress: xIP, _ port: xPort) -> Bool {
+    var socketfd: xSocket = 0
     var destinationIpAddress = sockaddr_in()
     
     xUDPSetting(&socketfd, ipAddress, port, &destinationIpAddress)
@@ -33,6 +54,6 @@ public func xSendUDP(ipAddress:in_addr_t, _ port:UInt16) -> Bool {
         return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
     }
 
-    guard sendto(socketfd, nil, 0, 0, destinationIpAddr, UInt32(sizeof(sockaddr))) != -1 else { return false }
+    if sendto(socketfd, nil, 0, 0, destinationIpAddr, UInt32(sizeof(sockaddr))) == -1 { return false }
     return true
 }

@@ -37,7 +37,7 @@ func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPo
     var destinationIpAddress = sockaddr_in()
 
     if !xUDPSetting(&socketfd, boardcastAddress, port!, &destinationIpAddress) {
-        assertionFailure(ICMPError.sendError.debugDescription)
+        assertionFailure(UDPError.sendError.debugDescription)
         return false
     }
     var enable = 1

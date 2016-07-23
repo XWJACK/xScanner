@@ -7,7 +7,7 @@
 //
 
 protocol xScannerError: CustomDebugStringConvertible, CustomStringConvertible {
-    
+
 }
 
 /// Common Error
@@ -81,6 +81,26 @@ enum UDPError: String, CustomDebugStringConvertible, CustomStringConvertible {
             return sendError.rawValue
         case .receiveError:
             return receiveError.rawValue
+        }
+    }
+}
+
+enum TCPError: String, CustomStringConvertible, CustomDebugStringConvertible {
+    case connectError
+
+    var debugDescription: String {
+        print(NSError(domain: NSPOSIXErrorDomain, code: Int(errno), userInfo: nil))
+        return result()
+    }
+
+    var description: String {
+        return result()
+    }
+
+    private func result() -> String {
+        switch self {
+        case connectError:
+            return connectError.rawValue
         }
     }
 }

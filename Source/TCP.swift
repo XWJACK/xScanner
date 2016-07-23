@@ -7,9 +7,12 @@
 //
 
 
-func xConnectWithTCP(ipAddress: xIP, _ port:UInt16/*, _ receiveTimeout:Int32*/) -> Bool {
+func xConnectWithTCP(ipAddress: xIP, _ port: xPort/*, _ receiveTimeout:Int32*/) -> Bool {
     let socketfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
-    guard socketfd != -1 else { return false }
+    if socketfd == -1 {
+        assertionFailure(CommonError.createSocketError.debugDescription)
+        return false
+    }
     
     // Useless in TCP
     //var sendTimeout = timeval(tv_sec: 2, tv_usec: 0)
@@ -23,7 +26,9 @@ func xConnectWithTCP(ipAddress: xIP, _ port:UInt16/*, _ receiveTimeout:Int32*/) 
         return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
     }
 
-    if connect(socketfd, destinationIpAddr, UInt32(sizeof(sockaddr))) == -1 { return false }
+    if connect(socketfd, destinationIpAddr, xKernelSocketSize) == -1 {
+        return false
+    }
     close(socketfd)
     return true
 }

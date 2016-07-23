@@ -1,1 +1,4 @@
-# 基于Swift打造的局域网扫描库
+# Network Scanner
+
+# Languate: Swift 2.2.1
+

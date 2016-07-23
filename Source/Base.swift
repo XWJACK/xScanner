@@ -15,11 +15,12 @@ typealias xIP = in_addr_t
 typealias xPort = UInt16
 typealias xTimeout = Int32
 typealias xPid = UInt16
-typealias xSize = UInt16
 typealias xSocket = Int32
 
 /// Do not using sizeof(timeval)
 let xTimeSize = UInt32(strideof(timeval))
+let xNetworkSocketSize = UInt32(sizeof(sockaddr_in))
+let xKernelSocketSize = UInt32(sizeof(sockaddr))
 let xIPV4 = UInt8(AF_INET)
 
 /**
@@ -51,7 +52,7 @@ calculate checksum to check pack is correct
 
 - returns: checksum with Unsigned Int 16 bytes
 */
-func xCheckSum(buffer: UnsafeMutablePointer<Void>, var _ size: xSize) -> UInt16 {
+func xCheckSum(buffer: UnsafeMutablePointer<Void>, var _ size: UInt16) -> UInt16 {
     var checkSum: UInt32 = 0
     var buff = UnsafeMutablePointer<UInt16>(buffer)
 

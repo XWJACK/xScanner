@@ -49,7 +49,7 @@ func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPo
 
     // send 4 packets
     for _ in 0..<4 {
-        if sendto(socketfd, sendBuffer, wolPacketSize, 0, temp, UInt32(sizeof(sockaddr_in))) == -1 {
+        if sendto(socketfd, sendBuffer, wolPacketSize, 0, temp, xNetworkSocketSize) == -1 {
             assertionFailure(UDPError.sendError.debugDescription)
             return false
         }

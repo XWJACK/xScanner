@@ -12,7 +12,7 @@ import XCTest
 class WOLTests: BaseTests {
 
     func testWakeup() {
-        let macAddress:[UInt8] = [0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff]
-        xWakeOnLAN(locateEthernetInformation[2], destinationMACAddress: macAddress)
+        let macAddress: [UInt8] = [0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff]
+        xWakeOnLAN(broadcastAddress, destinationMACAddress: macAddress)
     }
 }

@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>xScannerDocuments.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>F18E83CA1D2E492400333568</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F1BD883B1CAFA5740024910C</key>
 		<dict>
 			<key>primary</key>

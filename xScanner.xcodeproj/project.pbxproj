@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A276BE1D45CD0C007AB311 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A276BD1D45CD0C007AB311 /* Reachability.swift */; };
 		F144C08C1D3BACA900E56609 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F144C08B1D3BACA900E56609 /* Error.swift */; };
 		F164CC581CB9ED5B008A9242 /* ICMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC571CB9ED5B008A9242 /* ICMPTests.swift */; };
 		F164CC5A1CB9EE23008A9242 /* BaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC591CB9EE23008A9242 /* BaseTests.swift */; };
@@ -14,7 +15,6 @@
 		F164CC5E1CBA28FA008A9242 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC5D1CBA28FA008A9242 /* UDP.swift */; };
 		F164CC601CBA3BF5008A9242 /* UDPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC5F1CBA3BF5008A9242 /* UDPTests.swift */; };
 		F164CC621CBA738D008A9242 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC611CBA738D008A9242 /* NetworkLatency.swift */; };
-		F186DAC91D41EBB60094C8ED /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186DAC81D41EBB60094C8ED /* Reachability.swift */; };
 		F186DACB1D4240FD0094C8ED /* xScannerDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = F186DACA1D4240FD0094C8ED /* xScannerDB.sqlite */; };
 		F188B4A21CBA99FC00258F9C /* NetworkLatencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188B4A11CBA99FC00258F9C /* NetworkLatencyTests.swift */; };
 		F1BD88401CAFA5740024910C /* xScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = F1BD883F1CAFA5740024910C /* xScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04A276BD1D45CD0C007AB311 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Source/Reachability.swift; sourceTree = "<group>"; };
 		F144C08B1D3BACA900E56609 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
 		F164CC571CB9ED5B008A9242 /* ICMPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICMPTests.swift; path = Tests/ICMPTests.swift; sourceTree = "<group>"; };
 		F164CC591CB9EE23008A9242 /* BaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTests.swift; path = Tests/BaseTests.swift; sourceTree = "<group>"; };
@@ -53,7 +54,6 @@
 		F164CC5D1CBA28FA008A9242 /* UDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDP.swift; path = Source/UDP.swift; sourceTree = "<group>"; };
 		F164CC5F1CBA3BF5008A9242 /* UDPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDPTests.swift; path = Tests/UDPTests.swift; sourceTree = "<group>"; };
 		F164CC611CBA738D008A9242 /* NetworkLatency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkLatency.swift; path = Source/NetworkLatency.swift; sourceTree = "<group>"; };
-		F186DAC81D41EBB60094C8ED /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F186DACA1D4240FD0094C8ED /* xScannerDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = xScannerDB.sqlite; sourceTree = SOURCE_ROOT; };
 		F188B4A11CBA99FC00258F9C /* NetworkLatencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkLatencyTests.swift; path = Tests/NetworkLatencyTests.swift; sourceTree = "<group>"; };
 		F1BD883C1CAFA5740024910C /* xScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +216,7 @@
 				F1BD88641CAFA62B0024910C /* ScannerHost.swift */,
 				F1BD88651CAFA62B0024910C /* ScannerPorts.swift */,
 				F164CC611CBA738D008A9242 /* NetworkLatency.swift */,
-				F186DAC81D41EBB60094C8ED /* Reachability.swift */,
+				04A276BD1D45CD0C007AB311 /* Reachability.swift */,
 			);
 			name = Features;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 				F1BD888D1CAFACD50024910C /* TCP.swift in Sources */,
 				F1BD886C1CAFA62B0024910C /* ICMP.swift in Sources */,
 				F1BD88861CAFA8750024910C /* xScanner.swift in Sources */,
-				F186DAC91D41EBB60094C8ED /* Reachability.swift in Sources */,
+				04A276BE1D45CD0C007AB311 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

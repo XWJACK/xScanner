@@ -10,14 +10,34 @@ import Foundation
 
 
 @objc public protocol ResultDelegate {
-    optional func icmpResultDelegate(ipAddress:String, _ roundTripTime:Double)
+    optional func icmpResultDelegate(isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?)
 }
 
-public typealias icmpResultBlock = (String, Double) -> Void
+public typealias icmpResultBlock = (isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?) -> ()
 
 
+// MARK: - Network Latency test
 extension String {
-    func ping(number:Int) -> Double {
+    func ping(number: Int = 1) -> Double {
         return NetworkLatency.ping(self, number: number)
     }
+}
+
+
+
+public class xScanner {
+    public var ipAddress: String
+    
+    public func shareInstance() -> xScanner{
+        return self
+    }
+    
+    public init(ipAddress: String) {
+        self.ipAddress = ipAddress
+    }
+}
+
+// MARK: - icmp Scanner
+public extension xScanner {
+    
 }

@@ -2,92 +2,121 @@
 //  Scanner.swift
 //  xSocket
 //
-//  Created by XWJACK on 3/20/16.
+//  Created by Jack on 3/20/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
 import Foundation
 
 
-public class ScannerHost {
+class ScannerHost {
     
-    private var xIpAddress = [in_addr_t]()
-    weak var delegate:ResultDelegate?
+    private var xIpAddress: [xIP]
+    weak var delegate: ResultDelegate?
     
-    public var ipAddress:[String] {
-        get {
-            var temp = [String]()
-            for i in xIpAddress { temp.append(String.fromCString(inet_ntoa(in_addr(s_addr: i)))!) }
-            return temp
-        }
-        set {
-            for var i = 0; i < newValue.count; i++ { xIpAddress[i] = inet_addr(newValue[i]) }
-        }
-    }
+//    public var ipAddress: [String] {
+//        get {
+//            return xIpAddress.map{ $0.toString() }
+//        }
+//        set {
+//            //TODO:
+//            for i in 0 ..< newValue.count { xIpAddress[i] = inet_addr(newValue[i]) }
+//        }
+//    }
     
-    init(ipAddress:[in_addr_t], delegate:ResultDelegate?) {
+    init(ipAddress: [xIP], delegate: ResultDelegate? = nil) {
         self.xIpAddress = ipAddress
         self.delegate = delegate
     }
-    
-    private static func xicmpScanner(broadcastIpAddress:in_addr_t, _ timeout:Int32, _ delegate:ResultDelegate?, _ block:icmpResultBlock?) {
+}
+
+// MARK: - Scanner Host by icmp packet
+extension ScannerHost {
+    /**
+     send icmp with loop and it will block when receive result
+     
+     - parameter timeout: timeout
+     - parameter block:   result block
+     */
+    func xicmpScannerWithAllHost(timeout: xTimeout? = 1000, block: icmpResultBlock) {
         
-        var socketfd:Int32 = 0
-        let pid = UInt16(getpid())
+        var socketfd: xSocket = 0
+        let pid = xGetPid()
+        if !xPingSetting(&socketfd, timeout!) { return }
         
-        guard xPingPrepare(&socketfd, pid, broadcastIpAddress, 0, timeout) != false else { return }
-        
-        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(84)
-        
-        while true {
-            guard recvfrom(socketfd, receiveBuffer, 84, 0, nil, nil) != -1 else { break }
-            
-            let result = xUnicmpPacket(receiveBuffer, pid, 0, 84)
-            if result.0 != false {
-                if let icmpBlock = block {
-                    icmpBlock(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
-                }
-                if let icmpDelegate = delegate {
-                    icmpDelegate.icmpResultDelegate!(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
-                }
-            }else { print("error") }
+        //TODO: It can be Improved
+        for (sequence, ipAddr) in xIpAddress.enumerate() {
+            xPingSend(socketfd, pid, ipAddr, UInt16(sequence))
         }
         
-        close(socketfd)
-        receiveBuffer.dealloc(84)
-    }
-    
-    public static func xicmpScannerWithBroadcast(broadcastIpAddress:in_addr_t, delegate:ResultDelegate, timeout:Int32? = 2000) {
-        xicmpScanner(broadcastIpAddress, timeout!, delegate, nil)
-    }
-    
-    public static func xicmpScannerWithBroadcast(broadcastIpAddress:in_addr_t, timeout:Int32? = 2000, block:icmpResultBlock) {
-        xicmpScanner(broadcastIpAddress, timeout!, nil, block)
-    }
-    
-    
-    public func xicmpScannerWithAllHost(timeout:Int32? = 5000, block:icmpResultBlock) {
-        
-        var socketfd:Int32 = 0
-        let pid = UInt16(getpid())
-        guard xPingSetting(&socketfd, timeout!) == true else { return }
-        
-        for ipAddr in xIpAddress {
-            xPingSend(socketfd, pid, ipAddr, 0)
-        }
-        
-        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(84)
+        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
         receiveBuffer.initialize(0)
         while true {
-            guard xPingReceive(socketfd, receiveBuffer) == true else { break }
-            let result = xUnicmpPacket(receiveBuffer, pid, 0, 84)
-            if result.0 != false {
-                block(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!, result.2)
-                //print("\(String.fromCString(inet_ntoa(in_addr(s_addr: result.1)))!):\(result.2)")
+            if !xPingReceive(socketfd, receiveBuffer) { break }
+            let result = xUnICMPPacket(receiveBuffer, pid, 0, recvPacketSize)
+            if result.isSuccess {
+                block(isSuccess: true, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: nil)
+            }else {
+                assertionFailure(result.errorType.debugDescription)
+                block(isSuccess: false, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: result.errorType?.description)
             }
+            receiveBuffer.initialize(0)
         }
         close(socketfd)
         receiveBuffer.destroy()
-        receiveBuffer.dealloc(84)
+        receiveBuffer.dealloc(recvPacketSize)
+    }
+    
+    /**
+     icmp scanner with broadcast and it will block when receive result
+     
+     - parameter broadcastIpAddress: broadcastIpAddress
+     - parameter timeout:            timeout
+     - parameter delegate:           result delegate
+     - parameter block:              result block
+     */
+    private static func xicmpScanner(broadcastIpAddress: xIP, _ timeout: xTimeout, _ delegate: ResultDelegate?, _ block: icmpResultBlock?) {
+        
+        var socketfd: xSocket = 0
+        let pid = xGetPid()
+        
+        if !xPingPrepare(&socketfd, pid, broadcastIpAddress, 0, timeout) { return }
+        
+        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
+        receiveBuffer.initialize(0)
+        
+        while true {
+            if !xPingReceive(socketfd, receiveBuffer) { break }
+            let result = xUnICMPPacket(receiveBuffer, pid, 0, recvPacketSize)
+            if result.isSuccess {
+                if let icmpBlock = block {
+                    icmpBlock(isSuccess: true, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: nil)
+                }
+                if let icmpDelegate = delegate {
+                    icmpDelegate.icmpResultDelegate!(true, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: nil)
+                }
+            } else {
+                assertionFailure(result.errorType.debugDescription)
+                if let icmpBlock = block {
+                    icmpBlock(isSuccess: false, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: result.errorType?.description)
+                }
+                if let icmpDelegate = delegate {
+                    icmpDelegate.icmpResultDelegate!(false, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: result.errorType?.description)
+                }
+            }
+            receiveBuffer.initialize(0)
+        }
+        
+        close(socketfd)
+        receiveBuffer.destroy()
+        receiveBuffer.dealloc(recvPacketSize)
+    }
+    
+    static func xicmpScannerWithBroadcast(broadcastIpAddress broadcastIpAddress: xIP, delegate: ResultDelegate, timeout: xTimeout? = 1000) {
+        xicmpScanner(broadcastIpAddress, timeout!, delegate, nil)
+    }
+    
+    static func xicmpScannerWithBroadcast(broadcastIpAddress broadcastIpAddress: xIP, timeout: xTimeout? = 1000, block: icmpResultBlock) {
+        xicmpScanner(broadcastIpAddress, timeout!, nil, block)
     }
 }

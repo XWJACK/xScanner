@@ -2,11 +2,11 @@
 //  xScanner.h
 //  xScanner
 //
-//  Created by XWJACK on 4/2/16.
+//  Created by Jack on 4/2/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for xScanner.
 FOUNDATION_EXPORT double xScannerVersionNumber;

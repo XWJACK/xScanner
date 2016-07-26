@@ -2,7 +2,7 @@
 //  ICMP.swift
 //  xScanner
 //
-//  Created by XWJACK on 4/1/16.
+//  Created by Jack on 4/1/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 

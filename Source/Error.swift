@@ -2,8 +2,8 @@
 //  Error.swift
 //  xScanner
 //
-//  Created by 许文杰 on 7/17/16.
-//  Copyright © 2016 许文杰. All rights reserved.
+//  Created by Jack on 7/17/16.
+//  Copyright © 2016 XWJACK. All rights reserved.
 //
 
 protocol xScannerError: CustomDebugStringConvertible, CustomStringConvertible {

@@ -2,7 +2,7 @@
 //  ICMPTests.swift
 //  xScanner
 //
-//  Created by XWJACK on 4/10/16.
+//  Created by Jack on 4/10/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
@@ -11,9 +11,26 @@ import XCTest
 
 class ICMPTests: BaseTests {
 
-    func testping() {
-        print(xPing(inet_addr("192.168.1.1"), 0, 3000))
-        print(xPing(inet_addr("192.168.1.2"), 1, 3000))
-        print(xPing(inet_addr("192.168.1.3"), 2, 3000))
+    func testPing() {
+        for ipAddress in locateAddresses {
+            print(icmpResultTest(xPing(ipAddress, 0, 1000)))
+        }
+    }
+
+    // send icmp packet but not receive
+    func testxPingPrepare() {
+        var socketfd: xSocket = 0
+        for (sequence, ipaddress) in locateAddresses.enumerate() {
+            xPingPrepare(&socketfd, pid, ipaddress, UInt16(sequence).bigEndian, 3000)
+        }
+    }
+
+    // same as testxPingPrepare
+    func testPingSend() {
+        var socketfd: xSocket = 0
+        xPingSetting(&socketfd, 1000)
+        for (sequence, ipaddress) in locateAddresses.enumerate() {
+            xPingSend(socketfd, pid, ipaddress, UInt16(sequence).bigEndian)
+        }
     }
 }

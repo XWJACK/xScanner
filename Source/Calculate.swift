@@ -2,7 +2,7 @@
 //  Calculate.swift
 //  xSocket
 //
-//  Created by XWJACK on 3/21/16.
+//  Created by Jack on 3/21/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 

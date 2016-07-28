@@ -2,28 +2,38 @@
 //  ICMP.swift
 //  xScanner
 //
-//  Created by XWJACK on 4/1/16.
+//  Created by Jack on 4/1/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-import Foundation
 
-/**
-*  The struct of ICMP Header
-*/
-private struct icmp {
+private let icmpHeadSize = 8
+
+private let icmpDataSize = 56
+
+private let ipHeadSize = 20
+
+private let icmpPacketSize = icmpHeadSize + icmpDataSize    //64
+
+/// receive packet is ip head with icmp packet
+let recvPacketSize = ipHeadSize + icmpPacketSize
+
+
+// The struct of ICMP Header
+private struct ICMP {
     //u_char	icmp_type;		/* type of message, see below */
-    var type:UInt8
+    var type: UInt8
     //u_char	icmp_code;		/* type sub code */
-    var code:UInt8
+    var code: UInt8
     //u_short	icmp_cksum;		/* ones complement cksum of struct */
-    var checkSum:UInt16
-    var id:UInt16
-    var sequence:UInt16
-    
-    var data:timeval
-    let fill:[UInt8] = [UInt8](count: 56 - sizeof(timeval), repeatedValue: 0x00)
-    
+    var checkSum: UInt16
+    // Default is process id
+    var id: UInt16
+    var sequence: UInt16
+
+    var data: timeval
+    let fill = [UInt8](count: icmpDataSize - sizeof(timeval), repeatedValue: 0x00)
+
     init() {
         self.type = 0
         self.code = 0
@@ -34,20 +44,24 @@ private struct icmp {
     }
 }
 
+/// Send ICMP pakcet and return result
+typealias icmpReuslt = (isSuccess: Bool, ipAddress: xIP, time: Double, errorType: ICMPError?)
+
+
 /**
-fill icmp packet
+create icmp packet
 
 - parameter icmpHeader:     icmpHeader
 - parameter pid:            process id
 - parameter packetSequence: packet Sequence
 */
-private func xFillicmpPacket(inout icmpHeader:icmp, _ pid:UInt16, _ packetSequence:UInt16) {
+private func xFillICMPPacket(inout icmpHeader: ICMP, _ pid: xPid, _ packetSequence: UInt16) {
     icmpHeader.code = 0
     icmpHeader.type = 8
     icmpHeader.checkSum = 0
     icmpHeader.id = pid.bigEndian
     icmpHeader.sequence = packetSequence
-    
+
     gettimeofday(&icmpHeader.data, nil)
     icmpHeader.checkSum = xCheckSum(&icmpHeader, 64)
 }
@@ -60,55 +74,76 @@ un icmp packet
 - parameter packetSequence: packetSequence
 - parameter packetSize:     packetSize
 
-- returns: result
+- returns: result, if result.0 is false: return (false, 0, 0)
 */
-func xUnicmpPacket(buffer:UnsafeMutablePointer<Int8>, _ pid:UInt16, _ packetSequence:UInt16, _ packetSize:Int) -> (Bool, in_addr_t, Double) {
-    var ipHeaderLength:UInt8 = 0
-    
-    let ipHeader = UnsafeMutablePointer<ip>(buffer)
-    
+func xUnICMPPacket(buffer: UnsafeMutablePointer<Int8>, _ pid: xPid, _ packetSequence: UInt16, _ packetSize: Int) -> icmpReuslt {
+    var ipHeaderLength: UInt8 = 0
+
+    let ipHeader = UnsafeMutablePointer<IP>(buffer)
+
     ipHeaderLength = ipHeader.memory.versionAndHeaderLength & 0x0F
     ipHeaderLength = ipHeaderLength << 2
     let ipAddr = ipHeader.memory.sourceAddress
- 
-    let icmpHeader = UnsafeMutablePointer<icmp>(buffer + Int(ipHeaderLength))
-    if packetSize - Int(ipHeaderLength) < 8 { return (false, 0, 0) }
 
-    if icmpHeader.memory.type == 0 && icmpHeader.memory.id.bigEndian == pid && icmpHeader.memory.sequence == packetSequence {
-        let receiveCheckSum = icmpHeader.memory.checkSum;
+    let icmpHeader = UnsafeMutablePointer<ICMP>(buffer + Int(ipHeaderLength))
+    if packetSize - Int(ipHeaderLength) < 8 {
+        assertionFailure(ICMPError.unPacketError.debugDescription + " with packet size Error")
+        return (false, 0, 0, .unPacketError)
+    }
+
+    // delete icmpHeader.memory.sequence == packetSequence
+    // Useless in Multithreading
+    if icmpHeader.memory.type == 0 && icmpHeader.memory.id.bigEndian == pid/* && icmpHeader.memory.sequence == packetSequence */{
+        let receiveCheckSum = icmpHeader.memory.checkSum
         icmpHeader.memory.checkSum = 0
         let calculateCheckSum = xCheckSum(icmpHeader, UInt16(packetSize - Int(ipHeaderLength)))
         icmpHeader.memory.checkSum = receiveCheckSum
-        
+
         if receiveCheckSum == calculateCheckSum {
             var timevalReceive = timeval()
             gettimeofday(&timevalReceive, nil)
-            
-            return (true, ipAddr, xTimeSubtract(&timevalReceive, &icmpHeader.memory.data))
-        }else { return (false, 0, 0) }
-    }else { return (false, 0, 0) }
+
+            return (true, ipAddr, xTimeSubtract(&timevalReceive, &icmpHeader.memory.data), nil)
+        } else {
+            assertionFailure(ICMPError.unPacketError.debugDescription + " with receive checkSum Error")
+            return (false, 0, 0, .unPacketError)
+        }
+    } else {
+        assertionFailure(ICMPError.unPacketError.debugDescription + " with icmpHeader type or pid Error")
+        return (false, 0, 0, .unPacketError)
+    }
 }
 
 
 //////////////////////////////////////////////////////////////////////////
-/////////////////////////use for Muti thread/////////////////////////////
+/////////////////////////use for Multithreading///////////////////////////
 
 /**
-setting socket ping
+setting socketfd , send timeout and receive timeout
 
 - parameter socketfd:       socketfd
 - parameter receiveTimeout: receiveTimeout
 
-- returns: Bool
+- returns: true if success
 */
-func xPingSetting(inout socketfd:Int32, _ receiveTimeout:Int32) -> Bool{
-    var sendTimeout = timeval(tv_sec: 0, tv_usec: 100)
+func xPingSetting(inout socketfd: xSocket, _ receiveTimeout: xTimeout) -> Bool {
+    //var sendTimeout = timeval(tv_sec: 0, tv_usec: 100)
     var recvTimeout = timeval(tv_sec: Int(receiveTimeout / 1000), tv_usec: receiveTimeout % 1000)
-    
+
     socketfd = socket(PF_INET, SOCK_DGRAM, IPPROTO_ICMP)
-    guard socketfd != -1 else { return false }
-    guard setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, &recvTimeout, UInt32(sizeof(timeval))) != -1 else { return false }
-    guard setsockopt(socketfd, SOL_SOCKET, SO_SNDTIMEO, &sendTimeout, UInt32(sizeof(timeval))) != -1 else { return false }
+    if socketfd == -1 {
+        assertionFailure(CommonError.createSocketError.debugDescription)
+        return false
+    }
+    // why using strideof but not sizeof: https://forums.developer.apple.com/thread/14959
+    if setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, &recvTimeout, xTimeSize) == -1 {
+        assertionFailure(CommonError.settingSocketError.debugDescription + " with set receive timeout Error")
+        return false
+    }
+//    if setsockopt(socketfd, SOL_SOCKET, SO_SNDTIMEO, &sendTimeout, xTimeSize) == -1 {
+//        assertionFailure(ICMPError.settingSocketError.debugDescription + " with set send timeout Error")
+//        return false
+//    }
     return true
 }
 
@@ -120,92 +155,97 @@ send icmp
 - parameter ipAddress:      ipAddress
 - parameter packetSequence: packetSequence
 
-- returns: Bool
+- returns: true if success
 */
-func xPingSend(socketfd:Int32, _ pid:UInt16, _ ipAddress:in_addr_t, _ packetSequence:UInt16) -> Bool {
-    var sendBuffer = icmp()
-    xFillicmpPacket(&sendBuffer, pid, packetSequence)
-    
-    
+func xPingSend(socketfd: xSocket, _ pid: xPid, _ ipAddress: xIP, _ packetSequence: UInt16) -> Bool {
+    var sendBuffer = ICMP()
+    xFillICMPPacket(&sendBuffer, pid, packetSequence)
+
     var destinationIpAddress = sockaddr_in()
     xSettingIp(ipAddress, 0, &destinationIpAddress)
-    
+
     /// struct sockaddr_in to struct sockaddr
     let destinationIpAddr = withUnsafePointer(&destinationIpAddress) { (temp) in
         return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
     }
-    guard sendto(socketfd, &sendBuffer, 64, 0, destinationIpAddr, UInt32(sizeof(sockaddr))) != -1 else { return false }
+    if sendto(socketfd, &sendBuffer, icmpPacketSize, 0, destinationIpAddr, xKernelSocketSize) == -1 {
+        assertionFailure(ICMPError.sendError.debugDescription)
+        return false
+    }
 
     return true
 }
 
 /**
-prepare ping
+setting and send
 
-- parameter socketfd:       socketfd description
-- parameter pid:            pid description
-- parameter ipAddress:      ipAddress description
-- parameter packetSequence: packetSequence description
-- parameter receiveTimeout: receiveTimeout description
+- parameter socketfd:       socketfd
+- parameter pid:            pid
+- parameter ipAddress:      ipAddress
+- parameter packetSequence: packetSequence
+- parameter receiveTimeout: receiveTimeout
 
-- returns: Bool
+- returns: true if success
 */
-func xPingPrepare(inout socketfd:Int32, _ pid:UInt16, _ ipAddress:in_addr_t, _ packetSequence:UInt16, _ receiveTimeout:Int32) -> Bool {
+func xPingPrepare(inout socketfd: xSocket, _ pid: xPid, _ ipAddress: xIP, _ packetSequence: UInt16, _ receiveTimeout: xTimeout) -> Bool {
 
-    guard xPingSetting(&socketfd, receiveTimeout) == true else { return false }
-    
+    if !xPingSetting(&socketfd, receiveTimeout) { return false }
+
     //var context = CFSocketContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
     //let callback:CFSocketCallBack = {(s, type, address, data, info) -> Void in
-        
+
     //}
     //guard let socketfd = CFSocketCreate(nil, PF_INET, SOCK_DGRAM, IPPROTO_ICMP, CFSocketCallBackType.AcceptCallBack.rawValue, callback, &context) else { return false }
     //let cfsocketfd:CFSocketRef = CFSocketCreateWithNative(nil, socketfd, CFSocketCallBackType.AcceptCallBack.rawValue, callback, &context)
-    guard xPingSend(socketfd, pid, ipAddress, packetSequence) == true else { return false }
+    if !xPingSend(socketfd, pid, ipAddress, packetSequence) { return false }
     return true
 }
 
 /**
 receive result
 
-- parameter socketfd:      socketfd description
-- parameter receiveBuffer: receiveBuffer description
+- parameter socketfd:      socketfd
+- parameter receiveBuffer: receiveBuffer
 
-- returns: Bool
+- returns: true if success
 */
-func xPingReceive(socketfd:Int32, _ receiveBuffer:UnsafeMutablePointer<Int8>) -> Bool {
-    guard recvfrom(socketfd, receiveBuffer, 84, 0, nil, nil) != -1 else { return false }
+func xPingReceive(socketfd: xSocket, _ receiveBuffer: UnsafeMutablePointer<Int8>) -> Bool {
+    if recvfrom(socketfd, receiveBuffer, recvPacketSize, 0, nil, nil) == -1 {
+        //assertionFailure(ICMPError.receiveError.debugDescription)
+        return false
+    }
     return true
 }
 
 
-/////////////////////////use for Muti thread/////////////////////////////
+/////////////////////////use for Multithreading///////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
 
 /**
 ping
 
-- parameter ipAddress:      ipAddress description
-- parameter packetSequence: packetSequence description
-- parameter receiveTimeout: receiveTimeout description
+- parameter ipAddress:      ipAddress
+- parameter packetSequence: packetSequence
+- parameter receiveTimeout: receiveTimeout
 
-- returns: result
+- returns: result, if result.0 is false: return (false, 0, 0)
 */
-public func xPing(ipAddress:in_addr_t, _ packetSequence:UInt16, _ receiveTimeout:Int32) -> (Bool, in_addr_t, Double) {
-    var socketfd:Int32 = 0
-    let pid = UInt16(getpid())
-    
-    guard xPingPrepare(&socketfd, pid, ipAddress, packetSequence, receiveTimeout) == true else { return (false, ipAddress, 0) }
-    
-    let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(84)
+func xPing(ipAddress: xIP, _ packetSequence: UInt16, _ receiveTimeout: xTimeout) -> icmpReuslt {
+    var socketfd: xSocket = 0
+    let pid = xGetPid()
+
+    if !xPingPrepare(&socketfd, pid, ipAddress, packetSequence, receiveTimeout) { return (false, ipAddress, 0, .sendError) }
+
+    let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
     receiveBuffer.initialize(0)
-    guard xPingReceive(socketfd, receiveBuffer) == true else { return (false, ipAddress, 0) }
     
-    let result = xUnicmpPacket(receiveBuffer, pid, packetSequence, 84)
-    
+    if !xPingReceive(socketfd, receiveBuffer) { return (false, ipAddress, 0, .receiveError) }
+
+    let result = xUnICMPPacket(receiveBuffer, pid, packetSequence, recvPacketSize)
+
     close(socketfd)
     receiveBuffer.destroy()
-    receiveBuffer.dealloc(84)
+    receiveBuffer.dealloc(recvPacketSize)
     return result
 }
-

@@ -2,15 +2,15 @@
 //  InterfaceInformation.swift
 //  xSocket
 //
-//  Created by XWJACK on 3/21/16.
+//  Created by Jack on 3/21/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-import Foundation
+import NetworkExtension
+import SystemConfiguration.CaptiveNetwork
 
-
-public func getInterfaceInformationWithString() -> [String:[String]] {
-    var information = [String:[String]]()
+func getInterfaceInformationWithString() -> [String: [String]] {
+    var information: [String: [String]] = [:]
     
     var ifaddr:UnsafeMutablePointer<ifaddrs> = nil
     //retrieve the current interface -- return 0 on success
@@ -39,8 +39,9 @@ public func getInterfaceInformationWithString() -> [String:[String]] {
     return information
 }
 
-func getInterfaceInformationWithInt() -> [String:[in_addr_t]] {
-    var information = [String:[in_addr_t]]()
+
+func getInterfaceInformationWithInt() -> [String: [xIP]] {
+    var information: [String: [xIP]] = [:]
     
     var ifaddr:UnsafeMutablePointer<ifaddrs> = nil
     //retrieve the current interface -- return 0 on success
@@ -67,4 +68,28 @@ func getInterfaceInformationWithInt() -> [String:[in_addr_t]] {
     freeifaddrs(ifaddr)
     
     return information
+}
+
+
+func getNetworkEnvironment() -> [String: String] {
+    var informationDictionary: [String: String] = [:]
+    if #available(iOS 9.0, *) {
+        let information = NEHotspotHelper.supportedNetworkInterfaces()
+        informationDictionary["SSID"] = information[0].SSID!
+        informationDictionary["BSSID"] = information[0].BSSID!
+        return informationDictionary
+        
+    } else {
+        // Fallback on earlier versions
+        let informationArray:NSArray? = CNCopySupportedInterfaces()
+        if let information = informationArray {
+            let dict:NSDictionary? = CNCopyCurrentNetworkInfo(information[0] as! CFStringRef)
+            if let temp = dict {
+                informationDictionary["SSID"] = String(temp["SSID"]!)
+                informationDictionary["BSSID"] = String(temp["BSSID"]!)
+                return informationDictionary
+            }
+        }
+    }
+    return informationDictionary
 }

@@ -8,14 +8,6 @@
 
 import Foundation
 
-
-@objc public protocol ResultDelegate {
-    optional func icmpResultDelegate(isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?)
-}
-
-public typealias icmpResultBlock = (isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?) -> ()
-
-
 // MARK: - Network Latency test
 extension String {
     func ping(number: Int = 1) -> Double {

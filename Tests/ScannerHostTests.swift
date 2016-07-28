@@ -2,7 +2,7 @@
 //  ScannerHostTests.swift
 //  xSocket
 //
-//  Created by XWJACK on 3/28/16.
+//  Created by Jack on 3/28/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
@@ -11,26 +11,39 @@ import XCTest
 
 
 class ScannerHostTests: BaseTests, ResultDelegate {
-    
 
+    var scannerHost: ScannerHost!
+    
     func testScannerHostWithBroadcastUseBlock() {
-        ScannerHost.xicmpScannerWithBroadcast(self.locateEthernetInformation[2]) { (ipAddress, rtt) -> Void in
-            print("Block: \(ipAddress): \(rtt)")
+        ScannerHost.xicmpScannerWithBroadcast(broadcastIpAddress: broadcastAddress) { (isSuccess, ipAddress, roundTripTime, error) in
+            if isSuccess {
+                print("\(ipAddress) -- \(roundTripTime)")
+            } else {
+                print("\(ipAddress) -- \(error)")
+            }
         }
     }
-    
-//    func testScannerHostWithBroadcastUseDelegate() {
-//        ScannerHost.xicmpScannerWithBroadcast(self.locateEthernetInformation[2], delegate: self)
-//    }
-    
+
+    func testScannerHostWithBroadcastUseDelegate() {
+        ScannerHost.xicmpScannerWithBroadcast(broadcastIpAddress: broadcastAddress, delegate: self)
+    }
+
     func testScannerHostWithAllHostUseBlock() {
-        let scannerhost = ScannerHost(ipAddress: locateAddress, delegate: nil)
-        scannerhost.xicmpScannerWithAllHost { (ipAddress, rtt) -> Void in
-            print("Block: \(ipAddress): \(rtt)")
+        scannerHost = ScannerHost(ipAddress: locateAddresses)
+        scannerHost.xicmpScannerWithAllHost { (isSuccess, ipAddress, roundTripTime, error) in
+            if isSuccess {
+                print("\(ipAddress) -- \(roundTripTime)")
+            } else {
+                print("\(ipAddress) -- \(error)")
+            }
         }
     }
-    
-//    func xicmpScannerResult(ipAddress: String, _ rtt: Double) {
-//        print("Delegate: \(ipAddress): \(rtt)")
-//    }
+
+    func icmpResultDelegate(isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?) {
+        if isSuccess {
+            print("\(ipAddress) -- \(roundTripTime)")
+        } else {
+            print("\(ipAddress) -- \(error)")
+        }
+    }
 }

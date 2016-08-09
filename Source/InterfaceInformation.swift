@@ -71,24 +71,23 @@ func getInterfaceInformationWithInt() -> [String: [xIP]] {
 }
 
 
-func getNetworkEnvironment() -> [String: String] {
+func getNetworkEnvironment() -> [String: String]? {
     var informationDictionary: [String: String] = [:]
     if #available(iOS 9.0, *) {
         let information = NEHotspotHelper.supportedNetworkInterfaces()
-        informationDictionary["SSID"] = information[0].SSID!
-        informationDictionary["BSSID"] = information[0].BSSID!
+        if information.isEmpty { return nil }
+        informationDictionary["SSID"] = information[0].SSID ?? "Unknow"
+        informationDictionary["BSSID"] = information[0].BSSID ?? "Unknow"
         return informationDictionary
-        
     } else {
         // Fallback on earlier versions
-        let informationArray:NSArray? = CNCopySupportedInterfaces()
-        if let information = informationArray {
-            let dict:NSDictionary? = CNCopyCurrentNetworkInfo(information[0] as! CFStringRef)
-            if let temp = dict {
-                informationDictionary["SSID"] = String(temp["SSID"]!)
-                informationDictionary["BSSID"] = String(temp["BSSID"]!)
-                return informationDictionary
-            }
+        let informationArray: NSArray? = CNCopySupportedInterfaces()
+        if let information = informationArray,
+            let dict: NSDictionary = CNCopyCurrentNetworkInfo(information[0] as! CFStringRef) {
+            
+            informationDictionary["SSID"] = dict["SSID"] as? String ?? "Unknow"
+            informationDictionary["BSSID"] = dict["BSSID"] as? String ?? "Unknow"
+            return informationDictionary
         }
     }
     return informationDictionary

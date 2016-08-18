@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042BBA221D470A390054B0ED /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042BBA211D470A390054B0ED /* Result.swift */; };
 		04A276BE1D45CD0C007AB311 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A276BD1D45CD0C007AB311 /* Reachability.swift */; };
 		F144C08C1D3BACA900E56609 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F144C08B1D3BACA900E56609 /* Error.swift */; };
 		F164CC581CB9ED5B008A9242 /* ICMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC571CB9ED5B008A9242 /* ICMPTests.swift */; };
@@ -16,7 +15,6 @@
 		F164CC5E1CBA28FA008A9242 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC5D1CBA28FA008A9242 /* UDP.swift */; };
 		F164CC601CBA3BF5008A9242 /* UDPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC5F1CBA3BF5008A9242 /* UDPTests.swift */; };
 		F164CC621CBA738D008A9242 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F164CC611CBA738D008A9242 /* NetworkLatency.swift */; };
-		F186DACB1D4240FD0094C8ED /* xScanner.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = F186DACA1D4240FD0094C8ED /* xScanner.sqlite */; };
 		F188B4A21CBA99FC00258F9C /* NetworkLatencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F188B4A11CBA99FC00258F9C /* NetworkLatencyTests.swift */; };
 		F1BD88401CAFA5740024910C /* xScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = F1BD883F1CAFA5740024910C /* xScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F1BD88471CAFA5740024910C /* xScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BD883C1CAFA5740024910C /* xScanner.framework */; };
@@ -47,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042BBA211D470A390054B0ED /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		04A276BD1D45CD0C007AB311 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Source/Reachability.swift; sourceTree = "<group>"; };
 		F144C08B1D3BACA900E56609 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
 		F164CC571CB9ED5B008A9242 /* ICMPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICMPTests.swift; path = Tests/ICMPTests.swift; sourceTree = "<group>"; };
@@ -56,7 +53,6 @@
 		F164CC5D1CBA28FA008A9242 /* UDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDP.swift; path = Source/UDP.swift; sourceTree = "<group>"; };
 		F164CC5F1CBA3BF5008A9242 /* UDPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDPTests.swift; path = Tests/UDPTests.swift; sourceTree = "<group>"; };
 		F164CC611CBA738D008A9242 /* NetworkLatency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkLatency.swift; path = Source/NetworkLatency.swift; sourceTree = "<group>"; };
-		F186DACA1D4240FD0094C8ED /* xScanner.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = xScanner.sqlite; sourceTree = SOURCE_ROOT; };
 		F188B4A11CBA99FC00258F9C /* NetworkLatencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkLatencyTests.swift; path = Tests/NetworkLatencyTests.swift; sourceTree = "<group>"; };
 		F1BD883C1CAFA5740024910C /* xScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BD883F1CAFA5740024910C /* xScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xScanner.h; sourceTree = "<group>"; };
@@ -143,7 +139,6 @@
 			children = (
 				F1BD887C1CAFA69A0024910C /* ifaddrs.h */,
 				F1BD883F1CAFA5740024910C /* xScanner.h */,
-				F186DACA1D4240FD0094C8ED /* xScanner.sqlite */,
 				F1BD88411CAFA5740024910C /* Info.plist */,
 			);
 			path = xScanner;
@@ -162,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				F1BD88851CAFA8750024910C /* xScanner.swift */,
-				042BBA211D470A390054B0ED /* Result.swift */,
 				F1BD887A1CAFA6500024910C /* Core */,
 				F1BD887B1CAFA6550024910C /* Features */,
 				F1BD88581CAFA5DA0024910C /* Supporting Files */,
@@ -281,7 +275,7 @@
 		F1BD88331CAFA5740024910C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "许文杰";
 				TargetAttributes = {
@@ -317,7 +311,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F186DACB1D4240FD0094C8ED /* xScanner.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +332,6 @@
 				F1BD88711CAFA62B0024910C /* ScannerPorts.swift in Sources */,
 				F1BD88691CAFA62B0024910C /* Calculate.swift in Sources */,
 				F1BD886D1CAFA62B0024910C /* InterfaceInformation.swift in Sources */,
-				042BBA221D470A390054B0ED /* Result.swift in Sources */,
 				F144C08C1D3BACA900E56609 /* Error.swift in Sources */,
 				F1BD88681CAFA62B0024910C /* Base.swift in Sources */,
 				F164CC5E1CBA28FA008A9242 /* UDP.swift in Sources */,
@@ -420,6 +412,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -461,6 +454,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

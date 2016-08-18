@@ -19,7 +19,18 @@ class ScannerPorts {
         self.ipAddress = ipAddress
     }
     
-    func xScannerPortsWithTCP() -> [xPort] {
+    func xScannerPortsWithUDP() {
+        
+    }
+    
+    deinit {
+        print("destory")
+    }
+}
+
+extension ScannerPorts {
+    
+    static func xScannerPortsWithTCP(ipAddress: xIP) -> [xPort] {
         
         var portOpen: [xPort] = []
         
@@ -29,21 +40,14 @@ class ScannerPorts {
 //        
 //        for port in 0...65535 {
 //            dispatch_semaphore_wait(currentSemphore, DISPATCH_TIME_FOREVER)
-//            dispatch_group_async(group, queue, { [unowned self] in
-//                if xConnectWithTCP(self.ipAddress, UInt16(port)) == true { portOpen.append(UInt16(port)) }
+//            dispatch_group_async(group, queue, {
+//                if xConnectWithTCP(ipAddress, UInt16(port)) == true { portOpen.append(UInt16(port)) }
 //                dispatch_semaphore_signal(currentSemphore)
 //            })
 //        }
 //        
 //        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
-        return portOpen
-    }
-    
-    func xScannerPortsWithUDP() {
         
-    }
-    
-    deinit {
-        print("destory")
+        return portOpen
     }
 }

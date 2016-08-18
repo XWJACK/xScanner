@@ -8,13 +8,22 @@
 
 import Foundation
 
-// MARK: - Network Latency test
+public protocol HostStringConvertible {
+    var hostString: String { get }
+}
+
+
+extension String: HostStringConvertible {
+    public var hostString: String {
+        return self
+    }
+}
+
 extension String {
     func ping(number: Int = 1) -> Double {
         return NetworkLatency.ping(self, number: number)
     }
 }
-
 
 
 public class xScanner {
@@ -33,3 +42,9 @@ public class xScanner {
 public extension xScanner {
     
 }
+
+@objc public protocol ResultDelegate {
+    optional func icmpResultDelegate(isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?)
+}
+
+public typealias icmpResultBlock = (isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?) -> ()

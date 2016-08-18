@@ -44,11 +44,19 @@ extension ScannerHost {
         let pid = xGetPid()
         if !xPingSetting(&socketfd, timeout!) { return }
         
-        //TODO: It can be Improved
-        for (sequence, ipAddr) in xIpAddress.enumerate() {
-            xPingSend(socketfd, pid, ipAddr, UInt16(sequence))
-        }
-        
+        let isReadyToReceiveResult = dispatch_semaphore_create(1)
+        //TODO:
+        dispatch_semaphore_wait(isReadyToReceiveResult, DISPATCH_TIME_FOREVER)
+        dispatch_async(dispatch_get_global_queue(0, 0), {
+            dispatch_semaphore_signal(isReadyToReceiveResult)
+            sleep(10)
+            NSLog("Begin send packet to Scanner")
+            for (sequence, ipAddr) in self.xIpAddress.enumerate() {
+                xPingSend(socketfd, pid, ipAddr, UInt16(sequence))
+            }
+        })
+        dispatch_semaphore_wait(isReadyToReceiveResult, DISPATCH_TIME_FOREVER)
+        NSLog("Begin receive packet")
         let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
         receiveBuffer.initialize(0)
         while true {
@@ -119,4 +127,9 @@ extension ScannerHost {
     static func xicmpScannerWithBroadcast(broadcastIpAddress broadcastIpAddress: xIP, timeout: xTimeout? = 1000, block: icmpResultBlock) {
         xicmpScanner(broadcastIpAddress, timeout!, nil, block)
     }
+}
+
+// MARK: - Scanner Host by UDP
+extension ScannerHost {
+    
 }

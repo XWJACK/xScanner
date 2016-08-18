@@ -12,8 +12,8 @@ import XCTest
 class ScannerPortsTests: BaseTests {
 
     func testScannerPortsWithTCP() {
-        let scannerport = ScannerPorts(ipAddress: locateAddresses[0])
-        print(scannerport.xScannerPortsWithTCP())
+        //let scannerport = ScannerPorts(ipAddress: locateAddresses[0])
+        //print(ScannerPorts.xScannerPortsWithTCP())
     }
 
 //    func testPerformanceExample() {

@@ -30,9 +30,9 @@ class ScannerPorts {
 
 extension ScannerPorts {
     
-    static func xScannerPortsWithTCP(ipAddress: xIP) -> [xPort] {
+    static func xScannerPortsWithTCP(_ ipAddress: xIP) -> [xPort] {
         
-        var portOpen: [xPort] = []
+        let portOpen: [xPort] = []
         
 //        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 //        let group = dispatch_group_create()

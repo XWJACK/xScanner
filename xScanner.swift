@@ -20,7 +20,7 @@ extension String: HostStringConvertible {
 }
 
 extension String {
-    func ping(number: Int = 1) -> Double {
+    func ping(_ number: Int = 1) -> Double {
         return NetworkLatency.ping(self, number: number)
     }
 }
@@ -44,7 +44,7 @@ public extension xScanner {
 }
 
 @objc public protocol ResultDelegate {
-    optional func icmpResultDelegate(isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?)
+    @objc optional func icmpResultDelegate(_ isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?)
 }
 
-public typealias icmpResultBlock = (isSuccess: Bool, ipAddress: String, roundTripTime: Double, error: String?) -> ()
+public typealias icmpResultBlock = (_ isSuccess: Bool, _ ipAddress: String, _ roundTripTime: Double, _ error: String?) -> ()

@@ -26,10 +26,10 @@ enum CommonError: String, CustomDebugStringConvertible, CustomStringConvertible 
 
     private func result() -> String {
         switch self {
-        case createSocketError:
-            return createSocketError.rawValue
-        case settingSocketError:
-            return settingSocketError.rawValue
+        case .createSocketError:
+            return CommonError.createSocketError.rawValue
+        case .settingSocketError:
+            return CommonError.settingSocketError.rawValue
         }
     }
 }
@@ -51,12 +51,12 @@ enum ICMPError: String, CustomDebugStringConvertible, CustomStringConvertible {
 
     private func result() -> String {
         switch self {
-        case sendError:
-            return sendError.rawValue
-        case unPacketError:
-            return unPacketError.rawValue
+        case .sendError:
+            return ICMPError.sendError.rawValue
+        case .unPacketError:
+            return ICMPError.unPacketError.rawValue
         case .receiveError:
-            return receiveError.rawValue
+            return ICMPError.receiveError.rawValue
         }
     }
 }
@@ -77,10 +77,10 @@ enum UDPError: String, CustomDebugStringConvertible, CustomStringConvertible {
 
     private func result() -> String {
         switch self {
-        case sendError:
-            return sendError.rawValue
+        case .sendError:
+            return UDPError.sendError.rawValue
         case .receiveError:
-            return receiveError.rawValue
+            return UDPError.receiveError.rawValue
         }
     }
 }
@@ -99,8 +99,8 @@ enum TCPError: String, CustomStringConvertible, CustomDebugStringConvertible {
 
     private func result() -> String {
         switch self {
-        case connectError:
-            return connectError.rawValue
+        case .connectError:
+            return TCPError.connectError.rawValue
         }
     }
 }

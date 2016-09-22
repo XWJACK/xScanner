@@ -38,27 +38,27 @@ extension ScannerHost {
      - parameter timeout: timeout
      - parameter block:   result block
      */
-    func xicmpScannerWithAllHost(timeout: xTimeout? = 1000, block: icmpResultBlock) {
+    func xicmpScannerWithAllHost(_ timeout: xTimeout? = 1000, block: icmpResultBlock) {
         
         var socketfd: xSocket = 0
         let pid = xGetPid()
         if !xPingSetting(&socketfd, timeout!) { return }
         
-        let isReadyToReceiveResult = dispatch_semaphore_create(1)
+        let isReadyToReceiveResult = DispatchSemaphore(value: 1)
         //TODO:
-        dispatch_semaphore_wait(isReadyToReceiveResult, DISPATCH_TIME_FOREVER)
-        dispatch_async(dispatch_get_global_queue(0, 0), {
-            dispatch_semaphore_signal(isReadyToReceiveResult)
+        isReadyToReceiveResult.wait(timeout: DispatchTime.distantFuture)
+        DispatchQueue.global(priority: 0).async(execute: {
+            isReadyToReceiveResult.signal()
             sleep(10)
             NSLog("Begin send packet to Scanner")
-            for (sequence, ipAddr) in self.xIpAddress.enumerate() {
+            for (sequence, ipAddr) in self.xIpAddress.enumerated() {
                 xPingSend(socketfd, pid, ipAddr, UInt16(sequence))
             }
         })
-        dispatch_semaphore_wait(isReadyToReceiveResult, DISPATCH_TIME_FOREVER)
+        isReadyToReceiveResult.wait(timeout: DispatchTime.distantFuture)
         NSLog("Begin receive packet")
-        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
-        receiveBuffer.initialize(0)
+        let receiveBuffer = UnsafeMutablePointer<Int8>.allocate(capacity: recvPacketSize)
+        receiveBuffer.initialize(to: 0)
         while true {
             if !xPingReceive(socketfd, receiveBuffer) { break }
             let result = xUnICMPPacket(receiveBuffer, pid, 0, recvPacketSize)
@@ -68,11 +68,11 @@ extension ScannerHost {
                 assertionFailure(result.errorType.debugDescription)
                 block(isSuccess: false, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: result.errorType?.description)
             }
-            receiveBuffer.initialize(0)
+            receiveBuffer.initialize(to: 0)
         }
         close(socketfd)
-        receiveBuffer.destroy()
-        receiveBuffer.dealloc(recvPacketSize)
+        receiveBuffer.deinitialize()
+        receiveBuffer.deallocate(capacity: recvPacketSize)
     }
     
     /**
@@ -83,15 +83,15 @@ extension ScannerHost {
      - parameter delegate:           result delegate
      - parameter block:              result block
      */
-    private static func xicmpScanner(broadcastIpAddress: xIP, _ timeout: xTimeout, _ delegate: ResultDelegate?, _ block: icmpResultBlock?) {
+    private static func xicmpScanner(_ broadcastIpAddress: xIP, _ timeout: xTimeout, _ delegate: ResultDelegate?, _ block: icmpResultBlock?) {
         
         var socketfd: xSocket = 0
         let pid = xGetPid()
         
         if !xPingPrepare(&socketfd, pid, broadcastIpAddress, 0, timeout) { return }
         
-        let receiveBuffer = UnsafeMutablePointer<Int8>.alloc(recvPacketSize)
-        receiveBuffer.initialize(0)
+        let receiveBuffer = UnsafeMutablePointer<Int8>.allocate(capacity: recvPacketSize)
+        receiveBuffer.initialize(to: 0)
         
         while true {
             if !xPingReceive(socketfd, receiveBuffer) { break }
@@ -112,19 +112,19 @@ extension ScannerHost {
                     icmpDelegate.icmpResultDelegate!(false, ipAddress: result.ipAddress.toString()!, roundTripTime: result.time, error: result.errorType?.description)
                 }
             }
-            receiveBuffer.initialize(0)
+            receiveBuffer.initialize(to: 0)
         }
         
         close(socketfd)
-        receiveBuffer.destroy()
-        receiveBuffer.dealloc(recvPacketSize)
+        receiveBuffer.deinitialize()
+        receiveBuffer.deallocate(capacity: recvPacketSize)
     }
     
-    static func xicmpScannerWithBroadcast(broadcastIpAddress broadcastIpAddress: xIP, delegate: ResultDelegate, timeout: xTimeout? = 1000) {
+    static func xicmpScannerWithBroadcast(broadcastIpAddress: xIP, delegate: ResultDelegate, timeout: xTimeout? = 1000) {
         xicmpScanner(broadcastIpAddress, timeout!, delegate, nil)
     }
     
-    static func xicmpScannerWithBroadcast(broadcastIpAddress broadcastIpAddress: xIP, timeout: xTimeout? = 1000, block: icmpResultBlock) {
+    static func xicmpScannerWithBroadcast(broadcastIpAddress: xIP, timeout: xTimeout? = 1000, block: @escaping icmpResultBlock) {
         xicmpScanner(broadcastIpAddress, timeout!, nil, block)
     }
 }

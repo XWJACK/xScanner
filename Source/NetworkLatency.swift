@@ -11,7 +11,7 @@ import Foundation
 /// network latency
 class NetworkLatency {
     
-    static func ping(ipAddress: xIP, number: Int) -> Double {
+    static func ping(_ ipAddress: xIP, number: Int) -> Double {
         guard number > 0 else { return 0 }
         
         var statistics = 0
@@ -40,7 +40,7 @@ extension NetworkLatency {
      
      - returns: average of round-trip time
      */
-    static func ping(ipAddress: String, number: Int) -> Double {
+    static func ping(_ ipAddress: String, number: Int) -> Double {
         guard number > 0 else { return 0 }
         
         let ipAddr = inet_addr(ipAddress)

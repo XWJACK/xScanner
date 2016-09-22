@@ -18,18 +18,18 @@ wake a computer in LAN
 
 - returns: true if success
 */
-func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPort? = 666) -> Bool {
+func xWakeOnLAN(_ boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPort? = 666) -> Bool {
     guard destinationMACAddress.count == 6 else { return false }
 
-    let sendBuffer = UnsafeMutablePointer<UInt8>.alloc(wolPacketSize)
+    let sendBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: wolPacketSize)
     var buffer = sendBuffer
 
     for _ in 0..<6 {
-        buffer.memory = 0xFF
+        buffer.pointee = 0xFF
         buffer = buffer.successor()
     }
     for i in 0..<96 {
-        buffer.memory = destinationMACAddress[i % 6]
+        buffer.pointee = destinationMACAddress[i % 6]
         buffer = buffer.successor()
     }
 
@@ -41,10 +41,10 @@ func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPo
         return false
     }
     var enable = 1
-    setsockopt(socketfd, SOL_SOCKET, SO_BROADCAST, &enable, UInt32(sizeofValue(enable)))
+    setsockopt(socketfd, SOL_SOCKET, SO_BROADCAST, &enable, UInt32(MemoryLayout.size(ofValue: enable)))
 
-    let temp = withUnsafePointer(&destinationIpAddress) { (temp) in
-        return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
+    let temp = withUnsafePointer(to: &destinationIpAddress) { (temp) in
+        return unsafeBitCast(temp, to: UnsafePointer<sockaddr>.self)
     }
 
     // send 4 packets
@@ -55,7 +55,7 @@ func xWakeOnLAN(boardcastAddress: xIP, destinationMACAddress: [UInt8], port: xPo
         }
     }
 
-    sendBuffer.destroy()
-    sendBuffer.dealloc(wolPacketSize)
+    sendBuffer.deinitialize()
+    sendBuffer.deallocate(capacity: wolPacketSize)
     return true
 }

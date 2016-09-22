@@ -17,7 +17,7 @@
  
  - returns: true if success
  */
-func xUDPSetting(inout socketfd: xSocket, _ ipAddress: xIP, _ port: xPort, inout _ destinationIpAddress: sockaddr_in) -> Bool {
+func xUDPSetting( socketfd: inout xSocket, _ ipAddress: xIP, _ port: xPort, _ destinationIpAddress: inout sockaddr_in) -> Bool {
     //var sendTimeout = timeval(tv_sec: 0, tv_usec: 100)
     
     socketfd = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)
@@ -51,7 +51,7 @@ func xSendUDP(ipAddress: xIP, _ port: xPort) -> Bool {
     xUDPSetting(&socketfd, ipAddress, port, &destinationIpAddress)
     
     let destinationIpAddr = withUnsafePointer(&destinationIpAddress) { (temp) in
-        return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
+        return unsafeBitCast(temp, to: UnsafePointer<sockaddr>.self)
     }
 
     if sendto(socketfd, nil, 0, 0, destinationIpAddr, xKernelSocketSize) == -1 {

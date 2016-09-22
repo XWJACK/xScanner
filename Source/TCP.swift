@@ -7,7 +7,7 @@
 //
 
 
-func xConnectWithTCP(ipAddress: xIP, _ port: xPort/*, _ receiveTimeout:Int32*/) -> Bool {
+func xConnectWithTCP(_ ipAddress: xIP, _ port: xPort/*, _ receiveTimeout:Int32*/) -> Bool {
     let socketfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
     if socketfd == -1 {
         assertionFailure(CommonError.createSocketError.debugDescription)
@@ -22,8 +22,8 @@ func xConnectWithTCP(ipAddress: xIP, _ port: xPort/*, _ receiveTimeout:Int32*/) 
     
     var destinationIpAddress = sockaddr_in()
     xSettingIp(ipAddress, port, &destinationIpAddress)
-    let destinationIpAddr = withUnsafePointer(&destinationIpAddress) { (temp) in
-        return unsafeBitCast(temp, UnsafePointer<sockaddr>.self)
+    let destinationIpAddr = withUnsafePointer(to: &destinationIpAddress) { (temp) in
+        return unsafeBitCast(temp, to: UnsafePointer<sockaddr>.self)
     }
 
     if connect(socketfd, destinationIpAddr, xKernelSocketSize) == -1 {

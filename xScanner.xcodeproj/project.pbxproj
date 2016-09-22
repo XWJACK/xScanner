@@ -281,10 +281,12 @@
 				TargetAttributes = {
 					F1BD883B1CAFA5740024910C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					F1BD88451CAFA5740024910C = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = GKYAX8MAXU;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -480,6 +482,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -500,6 +503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xwjack.xScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -513,6 +517,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "xScannerTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -525,6 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xwjack.xScannerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "xScannerTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

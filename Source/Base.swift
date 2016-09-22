@@ -18,9 +18,9 @@ typealias xPid = UInt16
 typealias xSocket = Int32
 
 /// Do not using sizeof(timeval)
-let xTimeSize = UInt32(strideof(timeval))
-let xNetworkSocketSize = UInt32(sizeof(sockaddr_in))
-let xKernelSocketSize = UInt32(sizeof(sockaddr))
+let xTimeSize = UInt32(MemoryLayout<timeval>.stride)
+let xNetworkSocketSize = UInt32(MemoryLayout<sockaddr_in>.size)
+let xKernelSocketSize = UInt32(MemoryLayout<sockaddr>.size)
 let xIPV4 = UInt8(AF_INET)
 
 /**
@@ -52,17 +52,18 @@ calculate checksum to check pack is correct
 
 - returns: checksum with Unsigned Int 16 bytes
 */
-func xCheckSum(buffer: UnsafeMutablePointer<Void>, var _ size: UInt16) -> UInt16 {
+func xCheckSum(_ buffer: UnsafeMutableRawPointer, _ size: UInt16) -> UInt16 {
+    var size = size
     var checkSum: UInt32 = 0
     var buff = UnsafeMutablePointer<UInt16>(buffer)
 
     while size > 1 {
-        checkSum += UInt32(buff.memory)
+        checkSum += UInt32(buff.pointee)
         buff = buff.successor()
-        size -= UInt16(sizeof(UInt16))
+        size -= UInt16(MemoryLayout<UInt16>.size)
     }
 
-    if size == 1 { checkSum += UInt32(buff.memory) }
+    if size == 1 { checkSum += UInt32(buff.pointee) }
 
     checkSum = (checkSum >> 16) + (checkSum & 0xFFFF)
     checkSum += checkSum >> 16
@@ -78,11 +79,11 @@ Calculate time subtract
 
 - returns: time with number of microsencond
 */
-func xTimeSubtract(receiveTimeStamp: UnsafeMutablePointer<timeval>, _ sendTimeStamp: UnsafeMutablePointer<timeval>) -> Double {
+func xTimeSubtract(_ receiveTimeStamp: UnsafeMutablePointer<timeval>, _ sendTimeStamp: UnsafeMutablePointer<timeval>) -> Double {
     //calculate seconds
-    var timevalSec = receiveTimeStamp.memory.tv_sec - sendTimeStamp.memory.tv_sec
+    var timevalSec = receiveTimeStamp.pointee.tv_sec - sendTimeStamp.pointee.tv_sec
     //calculate microsends
-    var timevalUsec = receiveTimeStamp.memory.tv_usec - sendTimeStamp.memory.tv_usec
+    var timevalUsec = receiveTimeStamp.pointee.tv_usec - sendTimeStamp.pointee.tv_usec
 
     //if microsends less then zero
     if timevalUsec < 0 {
@@ -99,11 +100,11 @@ setting ip Address
 - parameter port:    destination port
 - parameter destinationAddress: destination ip Address
 */
-func xSettingIp(ipAddress: xIP, _ port: xPort, _ destinationAddress: UnsafeMutablePointer<sockaddr_in>) {
-    bzero(destinationAddress, sizeof(sockaddr_in));/* do not use sizeof(dstAddr) */
-    destinationAddress.memory.sin_family = xIPV4
-    destinationAddress.memory.sin_port = port.bigEndian
-    destinationAddress.memory.sin_addr.s_addr = ipAddress
+func xSettingIp(_ ipAddress: xIP, _ port: xPort, _ destinationAddress: UnsafeMutablePointer<sockaddr_in>) {
+    bzero(destinationAddress, MemoryLayout<sockaddr_in>.size);/* do not use sizeof(dstAddr) */
+    destinationAddress.pointee.sin_family = xIPV4
+    destinationAddress.pointee.sin_port = port.bigEndian
+    destinationAddress.pointee.sin_addr.s_addr = ipAddress
 }
 
 /**
@@ -127,7 +128,7 @@ func xGetPid() -> xPid {
 // MARK: - UInt32 ip address to String ip address
 extension xIP {
     func toString() -> String? {
-        return String.fromCString(inet_ntoa(in_addr(s_addr: self)))
+        return String(cString: inet_ntoa(in_addr(s_addr: self)))
     }
 }
 

@@ -4,20 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>xScanner.xcscheme</key>
+		<key>xScanner iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>xScanner macOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>F1BD883B1CAFA5740024910C</key>
+		<key>044B23111DAC9D8800F53397</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1BD88451CAFA5740024910C</key>
+		<key>044B231A1DAC9D8900F53397</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>044B232E1DAC9D9F00F53397</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>044B23361DAC9D9F00F53397</key>
 		<dict>
 			<key>primary</key>
 			<true/>

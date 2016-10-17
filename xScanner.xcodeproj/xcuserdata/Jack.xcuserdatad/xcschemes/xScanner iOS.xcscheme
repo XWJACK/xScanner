@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F1BD883B1CAFA5740024910C"
+               BlueprintIdentifier = "044B23111DAC9D8800F53397"
                BuildableName = "xScanner.framework"
-               BlueprintName = "xScanner"
+               BlueprintName = "xScanner iOS"
                ReferencedContainer = "container:xScanner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F1BD88451CAFA5740024910C"
-               BuildableName = "xScannerTests.xctest"
-               BlueprintName = "xScannerTests"
+               BlueprintIdentifier = "044B231A1DAC9D8900F53397"
+               BuildableName = "xScanner iOS Tests.xctest"
+               BlueprintName = "xScanner iOS Tests"
                ReferencedContainer = "container:xScanner.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F1BD883B1CAFA5740024910C"
+            BlueprintIdentifier = "044B23111DAC9D8800F53397"
             BuildableName = "xScanner.framework"
-            BlueprintName = "xScanner"
+            BlueprintName = "xScanner iOS"
             ReferencedContainer = "container:xScanner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F1BD883B1CAFA5740024910C"
+            BlueprintIdentifier = "044B23111DAC9D8800F53397"
             BuildableName = "xScanner.framework"
-            BlueprintName = "xScanner"
+            BlueprintName = "xScanner iOS"
             ReferencedContainer = "container:xScanner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F1BD883B1CAFA5740024910C"
+            BlueprintIdentifier = "044B23111DAC9D8800F53397"
             BuildableName = "xScanner.framework"
-            BlueprintName = "xScanner"
+            BlueprintName = "xScanner iOS"
             ReferencedContainer = "container:xScanner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

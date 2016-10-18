@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		044B231C1DAC9D8900F53397 /* xScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044B23121DAC9D8800F53397 /* xScanner.framework */; };
 		044B23381DAC9D9F00F53397 /* xScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044B232F1DAC9D9F00F53397 /* xScanner.framework */; };
+		044DA7991DB5D2D700191529 /* Wireless.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DA7971DB5D2D700191529 /* Wireless.swift */; };
 		04BF6A0B1DB07CB4009BC8B9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF69FF1DB07CB4009BC8B9 /* Base.swift */; };
 		04BF6A0C1DB07CB4009BC8B9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF69FF1DB07CB4009BC8B9 /* Base.swift */; };
 		04BF6A0D1DB07CB4009BC8B9 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A001DB07CB4009BC8B9 /* Calculate.swift */; };
@@ -79,6 +80,7 @@
 		044B23471DAC9E3900F53397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044B23481DAC9E3900F53397 /* xScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xScanner.h; sourceTree = "<group>"; };
 		044B234A1DAC9E3900F53397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		044DA7971DB5D2D700191529 /* Wireless.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireless.swift; sourceTree = "<group>"; };
 		04BF69FF1DB07CB4009BC8B9 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		04BF6A001DB07CB4009BC8B9 /* Calculate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		04BF6A011DB07CB4009BC8B9 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -201,15 +203,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		044DA79A1DB5D4A400191529 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				044DA7971DB5D2D700191529 /* Wireless.swift */,
+			);
+			name = macOS;
+			sourceTree = "<group>";
+		};
 		04BF69FD1DB07C9F009BC8B9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				04BF69FF1DB07CB4009BC8B9 /* Base.swift */,
-				04BF6A011DB07CB4009BC8B9 /* Error.swift */,
 				04BF6A021DB07CB4009BC8B9 /* ICMP.swift */,
 				04BF6A081DB07CB4009BC8B9 /* TCP.swift */,
 				04BF6A091DB07CB4009BC8B9 /* UDP.swift */,
 				04BF6A0A1DB07CB4009BC8B9 /* WOL.swift */,
+				04BF6A011DB07CB4009BC8B9 /* Error.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -217,6 +227,7 @@
 		04BF69FE1DB07CA5009BC8B9 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				044DA79A1DB5D4A400191529 /* macOS */,
 				04BF6A001DB07CB4009BC8B9 /* Calculate.swift */,
 				04BF6A031DB07CB4009BC8B9 /* InterfaceInformation.swift */,
 				04BF6A041DB07CB4009BC8B9 /* NetworkLatency.swift */,
@@ -450,6 +461,7 @@
 				04BF6A121DB07CB4009BC8B9 /* ICMP.swift in Sources */,
 				04BF6A221DB07CB4009BC8B9 /* WOL.swift in Sources */,
 				04BF6A1A1DB07CB4009BC8B9 /* ScannerHost.swift in Sources */,
+				044DA7991DB5D2D700191529 /* Wireless.swift in Sources */,
 				04BF6A161DB07CB4009BC8B9 /* NetworkLatency.swift in Sources */,
 				04BF6A201DB07CB4009BC8B9 /* UDP.swift in Sources */,
 				04BF6A141DB07CB4009BC8B9 /* InterfaceInformation.swift in Sources */,

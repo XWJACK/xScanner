@@ -8,46 +8,46 @@
 
 import Foundation
 
-class ScannerPorts {
-    private var ipAddress: xIP
-    
-//    init?(ipAddress: String) {
-//        self.ipAddress = inet_addr(ipAddress)
-//        guard self.ipAddress != INADDR_NONE else { return nil }
+//class ScannerPorts {
+//    private var ipAddress: xIP
+//    
+////    init?(ipAddress: String) {
+////        self.ipAddress = inet_addr(ipAddress)
+////        guard self.ipAddress != INADDR_NONE else { return nil }
+////    }
+//    init(ipAddress: xIP) {
+//        self.ipAddress = ipAddress
 //    }
-    init(ipAddress: xIP) {
-        self.ipAddress = ipAddress
-    }
-    
-    func xScannerPortsWithUDP() {
-        
-    }
-    
-    deinit {
-        print("destory")
-    }
-}
-
-extension ScannerPorts {
-    
-    static func xScannerPortsWithTCP(_ ipAddress: xIP) -> [xPort] {
-        
-        let portOpen: [xPort] = []
-        
-//        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-//        let group = dispatch_group_create()
-//        let currentSemphore = dispatch_semaphore_create(50)
+//    
+//    func xScannerPortsWithUDP() {
 //        
-//        for port in 0...65535 {
-//            dispatch_semaphore_wait(currentSemphore, DISPATCH_TIME_FOREVER)
-//            dispatch_group_async(group, queue, {
-//                if xConnectWithTCP(ipAddress, UInt16(port)) == true { portOpen.append(UInt16(port)) }
-//                dispatch_semaphore_signal(currentSemphore)
-//            })
-//        }
+//    }
+//    
+//    deinit {
+//        print("destory")
+//    }
+//}
+//
+//extension ScannerPorts {
+//    
+//    static func xScannerPortsWithTCP(_ ipAddress: xIP) -> [xPort] {
 //        
-//        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
-        
-        return portOpen
-    }
-}
+//        let portOpen: [xPort] = []
+//        
+////        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+////        let group = dispatch_group_create()
+////        let currentSemphore = dispatch_semaphore_create(50)
+////        
+////        for port in 0...65535 {
+////            dispatch_semaphore_wait(currentSemphore, DISPATCH_TIME_FOREVER)
+////            dispatch_group_async(group, queue, {
+////                if xConnectWithTCP(ipAddress, UInt16(port)) == true { portOpen.append(UInt16(port)) }
+////                dispatch_semaphore_signal(currentSemphore)
+////            })
+////        }
+////        
+////        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+//        
+//        return portOpen
+//    }
+//}

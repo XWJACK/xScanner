@@ -6,136 +6,98 @@
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
 
-//  The Base function in totle framework
-
-//  But if you want to using pointer in swift.
-//  Remenber to release by your self when you don't needed, because is unsafe in swift.
-
-typealias xIP = in_addr_t
-typealias xPort = UInt16
-typealias xTimeout = Int32
-typealias xPid = UInt16
-typealias xSocket = Int32
-
-/// Do not using sizeof(timeval)
-let xTimeSize = UInt32(MemoryLayout<timeval>.stride)
-let xNetworkSocketSize = UInt32(MemoryLayout<sockaddr_in>.size)
-let xKernelSocketSize = UInt32(MemoryLayout<sockaddr>.size)
-let xIPV4 = UInt8(AF_INET)
-
-/**
-*  The struct of IP Header
-    In addition to we can using #import "ip.h" in xScanner.h
-    This file is exist in:
-    /Applications/Xcode.app/Contents/Developer/Platforms/   iPhoneSimulator.platform (iPhoneOS.platform)
-    /Developer/SDKs/                                        iPhoneSimulator.sdk      (iPhoneOS.sdk)
-    /usr/include/netinet/ip.h
-*/
-struct IP {
-    var versionAndHeaderLength: UInt8
-    var differentiatedServices: UInt8
-    var totalLength: UInt16
-    var identification: UInt16
-    var flagsAndFragmentOffset: UInt16
-    var timeToLive: UInt8
-    var ipProtocol: UInt8
-    var headerCheckSum: UInt16
-    var sourceAddress: UInt32
-    var destinationAddress: UInt32
-}
-
-/**
-calculate checksum to check pack is correct
-
-- parameter buffer: buffer
-- parameter size:   buffer size
-
-- returns: checksum with Unsigned Int 16 bytes
-*/
-func xCheckSum(_ buffer: UnsafeMutableRawPointer, _ size: UInt16) -> UInt16 {
-    var size = size
-    var checkSum: UInt32 = 0
-    var buff = UnsafeMutablePointer<UInt16>(buffer)
-
-    while size > 1 {
-        checkSum += UInt32(buff.pointee)
-        buff = buff.successor()
-        size -= UInt16(MemoryLayout<UInt16>.size)
-    }
-
-    if size == 1 { checkSum += UInt32(buff.pointee) }
-
-    checkSum = (checkSum >> 16) + (checkSum & 0xFFFF)
-    checkSum += checkSum >> 16
-    return ~UInt16(checkSum)
-}
-
-
-/**
-Calculate time subtract
-
-- parameter receiveTimeStamp: receive time stamp
-- parameter sendTimeStamp: send time stamp
-
-- returns: time with number of microsencond
-*/
-func xTimeSubtract(_ receiveTimeStamp: UnsafeMutablePointer<timeval>, _ sendTimeStamp: UnsafeMutablePointer<timeval>) -> Double {
-    //calculate seconds
-    var timevalSec = receiveTimeStamp.pointee.tv_sec - sendTimeStamp.pointee.tv_sec
-    //calculate microsends
-    var timevalUsec = receiveTimeStamp.pointee.tv_usec - sendTimeStamp.pointee.tv_usec
-
-    //if microsends less then zero
-    if timevalUsec < 0 {
-        timevalSec -= 1
-        timevalUsec = -timevalUsec
-    }
-    return (Double(timevalSec) * 1000.0 + Double(timevalUsec)) / 1000.0
-}
-
-/**
-setting ip Address
-
-- parameter ipAddress:  ip Address
-- parameter port:    destination port
-- parameter destinationAddress: destination ip Address
-*/
-func xSettingIp(_ ipAddress: xIP, _ port: xPort, _ destinationAddress: UnsafeMutablePointer<sockaddr_in>) {
-    bzero(destinationAddress, MemoryLayout<sockaddr_in>.size);/* do not use sizeof(dstAddr) */
-    destinationAddress.pointee.sin_family = xIPV4
-    destinationAddress.pointee.sin_port = port.bigEndian
-    destinationAddress.pointee.sin_addr.s_addr = ipAddress
-}
-
-/**
- Get Process ID
- 
- - returns: xPid
- */
-func xGetPid() -> xPid {
-    return UInt16(getpid())
-}
-
-///**
-// Get Thread ID
-// 
-// - returns: xTid
-// */
-//func xGetTid() -> xTid {
-//    return
+/////  The Base function in totle framework
+//
+/////  But if you want to using pointer in swift.
+/////  Remenber to release by your self when you don't needed, because it unsafity in swift.
+//
+//
+///// The struct of IP Header
+//public struct IP {
+//    
+//    /// Version and Header Length
+//    var versionAndHeaderLength: UInt8
+//    
+//    /// different Services
+//    var differentiatedServices: UInt8
+//    
+//    /// total Length
+//    var totalLength: UInt16
+//    var identification: UInt16
+//    var flagsAndFragmentOffset: UInt16
+//    var timeToLive: UInt8
+//    var ipProtocol: UInt8
+//    
+//    /// header Check Sum
+//    var headerCheckSum: UInt16
+//    
+//    /// Source Address
+//    var sourceAddress: UInt32
+//    
+//    /// Destination Address
+//    var destinationAddress: UInt32
 //}
-
-// MARK: - UInt32 ip address to String ip address
-extension xIP {
-    func toString() -> String? {
-        return String(cString: inet_ntoa(in_addr(s_addr: self)))
-    }
-}
-
-// MARK: - String to UInt32
-extension String {
-    func toxIP() -> xIP? {
-        let ip = inet_addr(self)
-        return ip != INADDR_NONE ? ip : nil
-    }
-}
+//
+///// calculate check sum
+/////
+///// - parameter buffer: untyped data(`Void`)
+///// - parameter size:   buffer size
+/////
+///// - returns: check sum
+//public func calculateCheckSum(from buffer: UnsafeMutableRawPointer,
+//                              bufferSize size: UInt16) -> UInt16 {
+//    var size = size
+//    var checkSum: UInt32 = 0
+//    var forcedConversionBuffer = unsafeBitCast(buffer, to: UnsafeMutablePointer<UInt16>.self)
+//    
+//    while size > 1 {
+//        checkSum += UInt32(forcedConversionBuffer.pointee)
+//        forcedConversionBuffer = forcedConversionBuffer.successor()
+//        size -= UInt16(MemoryLayout<UInt16>.size)
+//    }
+//
+//    if size == 1 { checkSum += UInt32(forcedConversionBuffer.pointee) }
+//
+//    checkSum = (checkSum >> 16) + (checkSum & 0xFFFF)
+//    checkSum += checkSum >> 16
+//    return ~UInt16(checkSum)
+//}
+//
+///// calculate time subtract from begin to end
+/////
+///// - parameter sendTimeStamp:    send TimeStamp
+///// - parameter receiveTimeStamp: receive TimeStamp
+/////
+///// - returns: Time Subtract
+//public func calculateTimeSubtract(from sendTimeStamp: xTime,
+//                                  to receiveTimeStamp: xTime) -> Double {
+//    //calculate seconds
+//    var timevalSec = receiveTimeStamp.tv_sec - sendTimeStamp.tv_sec
+//    //calculate microsends
+//    var timevalUsec = receiveTimeStamp.tv_usec - sendTimeStamp.tv_usec
+//
+//    //if microsends less then zero
+//    if timevalUsec < 0 {
+//        timevalSec -= 1
+//        timevalUsec = -timevalUsec
+//    }
+//    return (Double(timevalSec) * 1000.0 + Double(timevalUsec)) / 1000.0
+//}
+//
+///// Deploy Destination Address
+///// Setting `IP`, `port`, `familyType`
+/////
+///// - parameter ipAddress:  ipAddress
+///// - parameter port:       default change to `bigEndian`
+///// - parameter familyType: default is `xIPV4`
+/////
+///// - returns: xSocketAddressInternet
+//func creatingAddress(ipAddress: xAddressInternet,
+//                     port: xPort,
+//                     familyType: xFamily = xProtocolFamily.IPV4) -> xSocketAddressInternet {
+//    var ip = xSocketAddressInternet()
+//    ip.sin_family = familyType
+//    ip.sin_port = port.bigEndian
+//    ip.sin_addr.s_addr = ipAddress
+//    return ip
+//}

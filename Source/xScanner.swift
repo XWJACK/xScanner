@@ -8,25 +8,61 @@
 
 import Darwin
 
-/// property
+//MARK: - Property
 public typealias xAddressInternet = in_addr_t
 public typealias xPort = UInt16
 public typealias xTimeout = Int32
 public typealias xProcessID = UInt16
 public typealias xSocket = Int32
+public typealias xFamily = sa_family_t
 
-public let xIPV4 = UInt8(AF_INET)
-public let xIPV6 = UInt8(AF_INET6)
+//MARK: - Globle Socket Struct
+/// protocol family
+public struct xProtocolFamily {
+    static let IPV4 = PF_INET
+    static let IPV6 = PF_INET6
+}
+/// socket type
+public struct xSocketType {
+    static let stream = SOCK_STREAM
+    static let datagram = SOCK_DGRAM
+}
+/// protocol type
+public struct xProtocolType {
+    static let tcp = IPPROTO_TCP
+    static let udp = IPPROTO_UDP
+}
 
 /// Do not using sizeof(timeval)
 public let xTimeSize = UInt32(MemoryLayout<xTime>.stride)
 public let xSocketInternetSize = UInt32(MemoryLayout<xSocketAddress>.size)
 public let xSocketSize = UInt32(MemoryLayout<xSocketAddress>.size)
-/// struct
+
+//MARK: - Struct
 public typealias xSocketAddress = sockaddr
 public typealias xSocketAddressInternet = sockaddr_in
 public typealias xSocketAddressInternet6 = sockaddr_in6
 public typealias xTime = timeval
+
+//MARK: - Function
+func getCurrentProcessID() -> xProcessID {
+    return UInt16(getpid())
+}
+
+// MARK: - UInt32 ip address to String ip address
+public extension xAddressInternet {
+    func asString() -> String? {
+        return String(cString: inet_ntoa(in_addr(s_addr: self)))
+    }
+}
+
+// MARK: - String to UInt32
+extension String {
+    func asAddress() -> xAddressInternet? {
+        let ip = inet_addr(self)
+        return ip != INADDR_NONE ? ip : nil
+    }
+}
 
 //public protocol HostStringConvertible {
 //    var hostString: String { get }

@@ -18,32 +18,24 @@
 //
 ///// receive packet is ip head with icmp packet
 //let recvPacketSize = ipHeadSize + icmpPacketSize
-//
-//
-///// The struct of ICMP Header
-//public struct ICMP {
-//    /// u_char	icmp_type;		/* type of message, see below */
-//    var type: UInt8
-//    /// u_char	icmp_code;		/* type sub code */
-//    var code: UInt8
-//    /// u_short	icmp_cksum;		/* ones complement cksum of struct */
-//    var checkSum: UInt16
-//    /// Default is process id
-//    var id: xProcessID
-//    var sequence: UInt16
-//
-//    var data: UnsafeMutableBufferPointer<UInt8>?
-//    
-//    init() {
-//        self.type = 0
-//        self.code = 0
-//        self.checkSum = 0
-//        self.id = 0
-//        self.sequence = 0
-//    }
-//}
-//
-//
+
+
+/// The struct of ICMP Header
+public struct ICMP {
+    /// type of message
+    var type: UInt8 = 0
+    /// type sub code
+    var code: UInt8 = 0
+    /// check sum
+    var checkSum: UInt16 = 0
+    /// Default is process id
+    var id: xProcessID = 0
+    var sequence: UInt16 = 0
+
+    var data: UnsafeMutableBufferPointer<UInt8>?
+}
+
+
 ///// Send ICMP pakcet and return result
 ////typealias icmpReuslt = (isSuccess: Bool, ipAddress: xAddressInternet, time: Double, errorType: ICMPError?)
 //
@@ -259,10 +251,13 @@
 //    receiveBuffer.deallocate(capacity: recvPacketSize)
 //    return result
 //}
-import CoreFoundation
 
-func createICMP() {
-    let socketFileHandle = CFSocketCreate(nil, xProtocolFamily.IPV4, xSocketType.datagram, xProtocolType.udp, CFSocketCallBackType.acceptCallBack.rawValue, { (socket, callbackType, address, data, info) in
-        }, nil)
-}
+
+
+//import CoreFoundation
+//
+//func createICMP() {
+//    let socketFileHandle = CFSocketCreate(nil, xProtocolFamily.IPV4, xSocketType.datagram, xProtocolType.udp, CFSocketCallBackType.acceptCallBack.rawValue, { (socket, callbackType, address, data, info) in
+//        }, nil)
+//}
 

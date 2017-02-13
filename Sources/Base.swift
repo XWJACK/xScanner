@@ -10,34 +10,34 @@
 //
 /////  But if you want to using pointer in swift.
 /////  Remenber to release by your self when you don't needed, because it unsafity in swift.
-//
-//
-///// The struct of IP Header
-//public struct IP {
-//    
-//    /// Version and Header Length
-//    var versionAndHeaderLength: UInt8
-//    
-//    /// different Services
-//    var differentiatedServices: UInt8
-//    
-//    /// total Length
-//    var totalLength: UInt16
-//    var identification: UInt16
-//    var flagsAndFragmentOffset: UInt16
-//    var timeToLive: UInt8
-//    var ipProtocol: UInt8
-//    
-//    /// header Check Sum
-//    var headerCheckSum: UInt16
-//    
-//    /// Source Address
-//    var sourceAddress: UInt32
-//    
-//    /// Destination Address
-//    var destinationAddress: UInt32
-//}
-//
+
+
+/// The struct of IP Header
+public struct IP {
+    
+    /// Version and Header Length
+    var versionAndHeaderLength: UInt8
+    
+    /// different Services
+    var differentiatedServices: UInt8
+    
+    /// total Length
+    var totalLength: UInt16
+    var identification: UInt16
+    var flagsAndFragmentOffset: UInt16
+    var timeToLive: UInt8
+    var ipProtocol: UInt8
+    
+    /// header Check Sum
+    var headerCheckSum: UInt16
+    
+    /// Source Address
+    var sourceAddress: UInt32
+    
+    /// Destination Address
+    var destinationAddress: UInt32
+}
+
 ///// calculate check sum
 /////
 ///// - parameter buffer: untyped data(`Void`)

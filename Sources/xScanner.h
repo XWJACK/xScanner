@@ -6,7 +6,7 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for xScanner.
 FOUNDATION_EXPORT double xScannerVersionNumber;
@@ -15,5 +15,4 @@ FOUNDATION_EXPORT double xScannerVersionNumber;
 FOUNDATION_EXPORT const unsigned char xScannerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <xScanner/PublicHeader.h>
-
 

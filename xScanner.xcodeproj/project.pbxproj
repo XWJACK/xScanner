@@ -9,33 +9,6 @@
 /* Begin PBXBuildFile section */
 		044B231C1DAC9D8900F53397 /* xScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044B23121DAC9D8800F53397 /* xScanner.framework */; };
 		044B23381DAC9D9F00F53397 /* xScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044B232F1DAC9D9F00F53397 /* xScanner.framework */; };
-		044DA7991DB5D2D700191529 /* Wireless.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044DA7971DB5D2D700191529 /* Wireless.swift */; };
-		04BF6A0B1DB07CB4009BC8B9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF69FF1DB07CB4009BC8B9 /* Base.swift */; };
-		04BF6A0C1DB07CB4009BC8B9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF69FF1DB07CB4009BC8B9 /* Base.swift */; };
-		04BF6A0D1DB07CB4009BC8B9 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A001DB07CB4009BC8B9 /* Calculate.swift */; };
-		04BF6A0E1DB07CB4009BC8B9 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A001DB07CB4009BC8B9 /* Calculate.swift */; };
-		04BF6A0F1DB07CB4009BC8B9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A011DB07CB4009BC8B9 /* Error.swift */; };
-		04BF6A101DB07CB4009BC8B9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A011DB07CB4009BC8B9 /* Error.swift */; };
-		04BF6A111DB07CB4009BC8B9 /* ICMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A021DB07CB4009BC8B9 /* ICMP.swift */; };
-		04BF6A121DB07CB4009BC8B9 /* ICMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A021DB07CB4009BC8B9 /* ICMP.swift */; };
-		04BF6A131DB07CB4009BC8B9 /* InterfaceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A031DB07CB4009BC8B9 /* InterfaceInformation.swift */; };
-		04BF6A141DB07CB4009BC8B9 /* InterfaceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A031DB07CB4009BC8B9 /* InterfaceInformation.swift */; };
-		04BF6A151DB07CB4009BC8B9 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A041DB07CB4009BC8B9 /* NetworkLatency.swift */; };
-		04BF6A161DB07CB4009BC8B9 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A041DB07CB4009BC8B9 /* NetworkLatency.swift */; };
-		04BF6A171DB07CB4009BC8B9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A051DB07CB4009BC8B9 /* Reachability.swift */; };
-		04BF6A181DB07CB4009BC8B9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A051DB07CB4009BC8B9 /* Reachability.swift */; };
-		04BF6A191DB07CB4009BC8B9 /* ScannerHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A061DB07CB4009BC8B9 /* ScannerHost.swift */; };
-		04BF6A1A1DB07CB4009BC8B9 /* ScannerHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A061DB07CB4009BC8B9 /* ScannerHost.swift */; };
-		04BF6A1B1DB07CB4009BC8B9 /* ScannerPorts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A071DB07CB4009BC8B9 /* ScannerPorts.swift */; };
-		04BF6A1C1DB07CB4009BC8B9 /* ScannerPorts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A071DB07CB4009BC8B9 /* ScannerPorts.swift */; };
-		04BF6A1D1DB07CB4009BC8B9 /* TCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A081DB07CB4009BC8B9 /* TCP.swift */; };
-		04BF6A1E1DB07CB4009BC8B9 /* TCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A081DB07CB4009BC8B9 /* TCP.swift */; };
-		04BF6A1F1DB07CB4009BC8B9 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A091DB07CB4009BC8B9 /* UDP.swift */; };
-		04BF6A201DB07CB4009BC8B9 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A091DB07CB4009BC8B9 /* UDP.swift */; };
-		04BF6A211DB07CB4009BC8B9 /* WOL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A0A1DB07CB4009BC8B9 /* WOL.swift */; };
-		04BF6A221DB07CB4009BC8B9 /* WOL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A0A1DB07CB4009BC8B9 /* WOL.swift */; };
-		04BF6A241DB07CD7009BC8B9 /* xScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A231DB07CD7009BC8B9 /* xScanner.swift */; };
-		04BF6A251DB07CD7009BC8B9 /* xScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A231DB07CD7009BC8B9 /* xScanner.swift */; };
 		04BF6A301DB07CE9009BC8B9 /* BaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A281DB07CE9009BC8B9 /* BaseTests.swift */; };
 		04BF6A311DB07CE9009BC8B9 /* BaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A281DB07CE9009BC8B9 /* BaseTests.swift */; };
 		04BF6A321DB07CE9009BC8B9 /* ICMPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A291DB07CE9009BC8B9 /* ICMPTests.swift */; };
@@ -52,6 +25,35 @@
 		04BF6A3D1DB07CE9009BC8B9 /* UDPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A2E1DB07CE9009BC8B9 /* UDPTests.swift */; };
 		04BF6A3E1DB07CE9009BC8B9 /* WOLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A2F1DB07CE9009BC8B9 /* WOLTests.swift */; };
 		04BF6A3F1DB07CE9009BC8B9 /* WOLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A2F1DB07CE9009BC8B9 /* WOLTests.swift */; };
+		04E5D5631E51A02D000C44F3 /* xScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E5D5601E51A008000C44F3 /* xScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04E5D5641E51A02D000C44F3 /* xScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E5D5601E51A008000C44F3 /* xScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04E5D5671E51A071000C44F3 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54A1E51A008000C44F3 /* Base.swift */; };
+		04E5D5681E51A071000C44F3 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54B1E51A008000C44F3 /* Calculate.swift */; };
+		04E5D5691E51A071000C44F3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54C1E51A008000C44F3 /* Error.swift */; };
+		04E5D56A1E51A071000C44F3 /* ICMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54D1E51A008000C44F3 /* ICMP.swift */; };
+		04E5D56B1E51A071000C44F3 /* InterfaceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54F1E51A008000C44F3 /* InterfaceInformation.swift */; };
+		04E5D56C1E51A071000C44F3 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5581E51A008000C44F3 /* NetworkLatency.swift */; };
+		04E5D56D1E51A071000C44F3 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5591E51A008000C44F3 /* Reachability.swift */; };
+		04E5D56E1E51A071000C44F3 /* ScannerHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55A1E51A008000C44F3 /* ScannerHost.swift */; };
+		04E5D56F1E51A071000C44F3 /* ScannerPorts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55B1E51A008000C44F3 /* ScannerPorts.swift */; };
+		04E5D5701E51A071000C44F3 /* TCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55C1E51A008000C44F3 /* TCP.swift */; };
+		04E5D5711E51A071000C44F3 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55D1E51A008000C44F3 /* UDP.swift */; };
+		04E5D5731E51A071000C44F3 /* WOL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55F1E51A008000C44F3 /* WOL.swift */; };
+		04E5D5741E51A071000C44F3 /* xScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5611E51A008000C44F3 /* xScanner.swift */; };
+		04E5D5751E51A072000C44F3 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54A1E51A008000C44F3 /* Base.swift */; };
+		04E5D5761E51A072000C44F3 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54B1E51A008000C44F3 /* Calculate.swift */; };
+		04E5D5771E51A072000C44F3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54C1E51A008000C44F3 /* Error.swift */; };
+		04E5D5781E51A072000C44F3 /* ICMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54D1E51A008000C44F3 /* ICMP.swift */; };
+		04E5D5791E51A072000C44F3 /* InterfaceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D54F1E51A008000C44F3 /* InterfaceInformation.swift */; };
+		04E5D57A1E51A072000C44F3 /* NetworkLatency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5581E51A008000C44F3 /* NetworkLatency.swift */; };
+		04E5D57B1E51A072000C44F3 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5591E51A008000C44F3 /* Reachability.swift */; };
+		04E5D57C1E51A072000C44F3 /* ScannerHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55A1E51A008000C44F3 /* ScannerHost.swift */; };
+		04E5D57D1E51A072000C44F3 /* ScannerPorts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55B1E51A008000C44F3 /* ScannerPorts.swift */; };
+		04E5D57E1E51A072000C44F3 /* TCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55C1E51A008000C44F3 /* TCP.swift */; };
+		04E5D57F1E51A072000C44F3 /* UDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55D1E51A008000C44F3 /* UDP.swift */; };
+		04E5D5801E51A072000C44F3 /* Wireless.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55E1E51A008000C44F3 /* Wireless.swift */; };
+		04E5D5811E51A072000C44F3 /* WOL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D55F1E51A008000C44F3 /* WOL.swift */; };
+		04E5D5821E51A072000C44F3 /* xScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D5611E51A008000C44F3 /* xScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,23 +79,7 @@
 		044B231B1DAC9D8900F53397 /* xScanner iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xScanner iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		044B232F1DAC9D9F00F53397 /* xScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044B23371DAC9D9F00F53397 /* xScanner macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xScanner macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		044B23471DAC9E3900F53397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		044B23481DAC9E3900F53397 /* xScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xScanner.h; sourceTree = "<group>"; };
 		044B234A1DAC9E3900F53397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		044DA7971DB5D2D700191529 /* Wireless.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireless.swift; sourceTree = "<group>"; };
-		04BF69FF1DB07CB4009BC8B9 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
-		04BF6A001DB07CB4009BC8B9 /* Calculate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
-		04BF6A011DB07CB4009BC8B9 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		04BF6A021DB07CB4009BC8B9 /* ICMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICMP.swift; sourceTree = "<group>"; };
-		04BF6A031DB07CB4009BC8B9 /* InterfaceInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceInformation.swift; sourceTree = "<group>"; };
-		04BF6A041DB07CB4009BC8B9 /* NetworkLatency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLatency.swift; sourceTree = "<group>"; };
-		04BF6A051DB07CB4009BC8B9 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		04BF6A061DB07CB4009BC8B9 /* ScannerHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerHost.swift; sourceTree = "<group>"; };
-		04BF6A071DB07CB4009BC8B9 /* ScannerPorts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerPorts.swift; sourceTree = "<group>"; };
-		04BF6A081DB07CB4009BC8B9 /* TCP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCP.swift; sourceTree = "<group>"; };
-		04BF6A091DB07CB4009BC8B9 /* UDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDP.swift; sourceTree = "<group>"; };
-		04BF6A0A1DB07CB4009BC8B9 /* WOL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOL.swift; sourceTree = "<group>"; };
-		04BF6A231DB07CD7009BC8B9 /* xScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xScanner.swift; sourceTree = "<group>"; };
 		04BF6A281DB07CE9009BC8B9 /* BaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTests.swift; sourceTree = "<group>"; };
 		04BF6A291DB07CE9009BC8B9 /* ICMPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICMPTests.swift; sourceTree = "<group>"; };
 		04BF6A2A1DB07CE9009BC8B9 /* NetworkLatencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLatencyTests.swift; sourceTree = "<group>"; };
@@ -102,6 +88,25 @@
 		04BF6A2D1DB07CE9009BC8B9 /* TCPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPTests.swift; sourceTree = "<group>"; };
 		04BF6A2E1DB07CE9009BC8B9 /* UDPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPTests.swift; sourceTree = "<group>"; };
 		04BF6A2F1DB07CE9009BC8B9 /* WOLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOLTests.swift; sourceTree = "<group>"; };
+		04E5D54A1E51A008000C44F3 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		04E5D54B1E51A008000C44F3 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
+		04E5D54C1E51A008000C44F3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		04E5D54D1E51A008000C44F3 /* ICMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICMP.swift; sourceTree = "<group>"; };
+		04E5D54E1E51A008000C44F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04E5D54F1E51A008000C44F3 /* InterfaceInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceInformation.swift; sourceTree = "<group>"; };
+		04E5D5531E51A008000C44F3 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		04E5D5551E51A008000C44F3 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		04E5D5571E51A008000C44F3 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		04E5D5581E51A008000C44F3 /* NetworkLatency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLatency.swift; sourceTree = "<group>"; };
+		04E5D5591E51A008000C44F3 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		04E5D55A1E51A008000C44F3 /* ScannerHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerHost.swift; sourceTree = "<group>"; };
+		04E5D55B1E51A008000C44F3 /* ScannerPorts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerPorts.swift; sourceTree = "<group>"; };
+		04E5D55C1E51A008000C44F3 /* TCP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCP.swift; sourceTree = "<group>"; };
+		04E5D55D1E51A008000C44F3 /* UDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDP.swift; sourceTree = "<group>"; };
+		04E5D55E1E51A008000C44F3 /* Wireless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wireless.swift; sourceTree = "<group>"; };
+		04E5D55F1E51A008000C44F3 /* WOL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WOL.swift; sourceTree = "<group>"; };
+		04E5D5601E51A008000C44F3 /* xScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xScanner.h; sourceTree = "<group>"; };
+		04E5D5611E51A008000C44F3 /* xScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xScanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +146,7 @@
 		044B23061DAC9D0600F53397 = {
 			isa = PBXGroup;
 			children = (
-				044B23461DAC9E3900F53397 /* Source */,
+				04E5D5491E51A008000C44F3 /* Sources */,
 				044B23491DAC9E3900F53397 /* Tests */,
 				044B23131DAC9D8800F53397 /* Products */,
 			);
@@ -156,17 +161,6 @@
 				044B23371DAC9D9F00F53397 /* xScanner macOS Tests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		044B23461DAC9E3900F53397 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				04BF6A231DB07CD7009BC8B9 /* xScanner.swift */,
-				04BF69FD1DB07C9F009BC8B9 /* Core */,
-				04BF69FE1DB07CA5009BC8B9 /* Features */,
-				044B234B1DAC9E3D00F53397 /* Supporting Files */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		044B23491DAC9E3900F53397 /* Tests */ = {
@@ -185,15 +179,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		044B234B1DAC9E3D00F53397 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				044B23471DAC9E3900F53397 /* Info.plist */,
-				044B23481DAC9E3900F53397 /* xScanner.h */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		044B234C1DAC9E4800F53397 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,37 +188,92 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		044DA79A1DB5D4A400191529 /* macOS */ = {
+		04E5D5491E51A008000C44F3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				044DA7971DB5D2D700191529 /* Wireless.swift */,
+				04E5D5611E51A008000C44F3 /* xScanner.swift */,
+				04E5D5651E51A05E000C44F3 /* Core */,
+				04E5D5661E51A065000C44F3 /* Features */,
+				04E5D5621E51A00D000C44F3 /* Supporting Files */,
+				04E5D54B1E51A008000C44F3 /* Calculate.swift */,
+				04E5D54F1E51A008000C44F3 /* InterfaceInformation.swift */,
+				04E5D5581E51A008000C44F3 /* NetworkLatency.swift */,
+				04E5D5591E51A008000C44F3 /* Reachability.swift */,
+				04E5D55A1E51A008000C44F3 /* ScannerHost.swift */,
+				04E5D55B1E51A008000C44F3 /* ScannerPorts.swift */,
+				04E5D55E1E51A008000C44F3 /* Wireless.swift */,
 			);
-			name = macOS;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		04BF69FD1DB07C9F009BC8B9 /* Core */ = {
+		04E5D5501E51A008000C44F3 /* modules */ = {
 			isa = PBXGroup;
 			children = (
-				04BF69FF1DB07CB4009BC8B9 /* Base.swift */,
-				04BF6A021DB07CB4009BC8B9 /* ICMP.swift */,
-				04BF6A081DB07CB4009BC8B9 /* TCP.swift */,
-				04BF6A091DB07CB4009BC8B9 /* UDP.swift */,
-				04BF6A0A1DB07CB4009BC8B9 /* WOL.swift */,
-				04BF6A011DB07CB4009BC8B9 /* Error.swift */,
+				04E5D5511E51A008000C44F3 /* ifaddrs */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		04E5D5511E51A008000C44F3 /* ifaddrs */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D5521E51A008000C44F3 /* iphoneos */,
+				04E5D5541E51A008000C44F3 /* iphonesimulator */,
+				04E5D5561E51A008000C44F3 /* macosx */,
+			);
+			path = ifaddrs;
+			sourceTree = "<group>";
+		};
+		04E5D5521E51A008000C44F3 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D5531E51A008000C44F3 /* module.modulemap */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		04E5D5541E51A008000C44F3 /* iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D5551E51A008000C44F3 /* module.modulemap */,
+			);
+			path = iphonesimulator;
+			sourceTree = "<group>";
+		};
+		04E5D5561E51A008000C44F3 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D5571E51A008000C44F3 /* module.modulemap */,
+			);
+			path = macosx;
+			sourceTree = "<group>";
+		};
+		04E5D5621E51A00D000C44F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D5601E51A008000C44F3 /* xScanner.h */,
+				04E5D54E1E51A008000C44F3 /* Info.plist */,
+				04E5D5501E51A008000C44F3 /* modules */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04E5D5651E51A05E000C44F3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D54A1E51A008000C44F3 /* Base.swift */,
+				04E5D54C1E51A008000C44F3 /* Error.swift */,
+				04E5D54D1E51A008000C44F3 /* ICMP.swift */,
+				04E5D55C1E51A008000C44F3 /* TCP.swift */,
+				04E5D55D1E51A008000C44F3 /* UDP.swift */,
+				04E5D55F1E51A008000C44F3 /* WOL.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		04BF69FE1DB07CA5009BC8B9 /* Features */ = {
+		04E5D5661E51A065000C44F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				044DA79A1DB5D4A400191529 /* macOS */,
-				04BF6A001DB07CB4009BC8B9 /* Calculate.swift */,
-				04BF6A031DB07CB4009BC8B9 /* InterfaceInformation.swift */,
-				04BF6A041DB07CB4009BC8B9 /* NetworkLatency.swift */,
-				04BF6A051DB07CB4009BC8B9 /* Reachability.swift */,
-				04BF6A061DB07CB4009BC8B9 /* ScannerHost.swift */,
-				04BF6A071DB07CB4009BC8B9 /* ScannerPorts.swift */,
 			);
 			name = Features;
 			sourceTree = "<group>";
@@ -245,6 +285,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E5D5631E51A02D000C44F3 /* xScanner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +293,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E5D5641E51A02D000C44F3 /* xScanner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +388,7 @@
 					};
 					044B231A1DAC9D8900F53397 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AWFM3K5AG4;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -417,19 +460,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04BF6A1B1DB07CB4009BC8B9 /* ScannerPorts.swift in Sources */,
-				04BF6A241DB07CD7009BC8B9 /* xScanner.swift in Sources */,
-				04BF6A171DB07CB4009BC8B9 /* Reachability.swift in Sources */,
-				04BF6A0D1DB07CB4009BC8B9 /* Calculate.swift in Sources */,
-				04BF6A1D1DB07CB4009BC8B9 /* TCP.swift in Sources */,
-				04BF6A0F1DB07CB4009BC8B9 /* Error.swift in Sources */,
-				04BF6A111DB07CB4009BC8B9 /* ICMP.swift in Sources */,
-				04BF6A211DB07CB4009BC8B9 /* WOL.swift in Sources */,
-				04BF6A191DB07CB4009BC8B9 /* ScannerHost.swift in Sources */,
-				04BF6A151DB07CB4009BC8B9 /* NetworkLatency.swift in Sources */,
-				04BF6A1F1DB07CB4009BC8B9 /* UDP.swift in Sources */,
-				04BF6A131DB07CB4009BC8B9 /* InterfaceInformation.swift in Sources */,
-				04BF6A0B1DB07CB4009BC8B9 /* Base.swift in Sources */,
+				04E5D56F1E51A071000C44F3 /* ScannerPorts.swift in Sources */,
+				04E5D56D1E51A071000C44F3 /* Reachability.swift in Sources */,
+				04E5D5681E51A071000C44F3 /* Calculate.swift in Sources */,
+				04E5D5701E51A071000C44F3 /* TCP.swift in Sources */,
+				04E5D5691E51A071000C44F3 /* Error.swift in Sources */,
+				04E5D56A1E51A071000C44F3 /* ICMP.swift in Sources */,
+				04E5D56E1E51A071000C44F3 /* ScannerHost.swift in Sources */,
+				04E5D5731E51A071000C44F3 /* WOL.swift in Sources */,
+				04E5D56C1E51A071000C44F3 /* NetworkLatency.swift in Sources */,
+				04E5D5711E51A071000C44F3 /* UDP.swift in Sources */,
+				04E5D56B1E51A071000C44F3 /* InterfaceInformation.swift in Sources */,
+				04E5D5671E51A071000C44F3 /* Base.swift in Sources */,
+				04E5D5741E51A071000C44F3 /* xScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,20 +495,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04BF6A1C1DB07CB4009BC8B9 /* ScannerPorts.swift in Sources */,
-				04BF6A251DB07CD7009BC8B9 /* xScanner.swift in Sources */,
-				04BF6A181DB07CB4009BC8B9 /* Reachability.swift in Sources */,
-				04BF6A0E1DB07CB4009BC8B9 /* Calculate.swift in Sources */,
-				04BF6A1E1DB07CB4009BC8B9 /* TCP.swift in Sources */,
-				04BF6A101DB07CB4009BC8B9 /* Error.swift in Sources */,
-				04BF6A121DB07CB4009BC8B9 /* ICMP.swift in Sources */,
-				04BF6A221DB07CB4009BC8B9 /* WOL.swift in Sources */,
-				04BF6A1A1DB07CB4009BC8B9 /* ScannerHost.swift in Sources */,
-				044DA7991DB5D2D700191529 /* Wireless.swift in Sources */,
-				04BF6A161DB07CB4009BC8B9 /* NetworkLatency.swift in Sources */,
-				04BF6A201DB07CB4009BC8B9 /* UDP.swift in Sources */,
-				04BF6A141DB07CB4009BC8B9 /* InterfaceInformation.swift in Sources */,
-				04BF6A0C1DB07CB4009BC8B9 /* Base.swift in Sources */,
+				04E5D57D1E51A072000C44F3 /* ScannerPorts.swift in Sources */,
+				04E5D57B1E51A072000C44F3 /* Reachability.swift in Sources */,
+				04E5D5761E51A072000C44F3 /* Calculate.swift in Sources */,
+				04E5D57E1E51A072000C44F3 /* TCP.swift in Sources */,
+				04E5D5771E51A072000C44F3 /* Error.swift in Sources */,
+				04E5D5781E51A072000C44F3 /* ICMP.swift in Sources */,
+				04E5D57C1E51A072000C44F3 /* ScannerHost.swift in Sources */,
+				04E5D5811E51A072000C44F3 /* WOL.swift in Sources */,
+				04E5D57A1E51A072000C44F3 /* NetworkLatency.swift in Sources */,
+				04E5D57F1E51A072000C44F3 /* UDP.swift in Sources */,
+				04E5D5791E51A072000C44F3 /* InterfaceInformation.swift in Sources */,
+				04E5D5751E51A072000C44F3 /* Base.swift in Sources */,
+				04E5D5801E51A072000C44F3 /* Wireless.swift in Sources */,
+				04E5D5821E51A072000C44F3 /* xScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +602,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -570,6 +614,9 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "${SRCROOT}/Sources/modules/ifaddrs/iphoneos";
+				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "${SRCROOT}/Sources/modules/ifaddrs/iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,7 +666,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -628,6 +676,9 @@
 				PRODUCT_NAME = xScanner;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "${SRCROOT}/Sources/modules/ifaddrs/iphoneos";
+				"SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]" = "${SRCROOT}/Sources/modules/ifaddrs/iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -662,6 +713,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = AWFM3K5AG4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -718,6 +770,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = AWFM3K5AG4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -747,6 +800,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -790,7 +844,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -801,6 +856,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/modules/ifaddrs/macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -813,6 +869,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -850,7 +907,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -859,6 +917,7 @@
 				PRODUCT_NAME = xScanner;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/modules/ifaddrs/macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";

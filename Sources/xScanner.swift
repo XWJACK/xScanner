@@ -64,6 +64,11 @@ extension String {
     }
 }
 
+
+protocol IPConvertible {
+    
+}
+
 //public protocol HostStringConvertible {
 //    var hostString: String { get }
 //}

@@ -5,7 +5,7 @@
 //  Created by Jack on 3/21/16.
 //  Copyright © 2016 XWJACK. All rights reserved.
 //
-
+import ifaddrs
 //import Darwin
 //import NetworkExtension
 //import SystemConfiguration.CaptiveNetwork
@@ -21,13 +21,13 @@
 //    //loop through linked list of interface
 //    while interface != nil {
 //        if interface?.pointee.ifa_addr.pointee.sa_family == UInt8(AF_INET) {//ipv4
-//            let interfaceName = String.fromCString(interface!.pointee.ifa_name)
-//            let interfaceAddress = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface.pointee.ifa_addr).pointee.sin_addr))
-//            let interfaceNetmask = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface.pointee.ifa_netmask).pointee.sin_addr))
+//            let interfaceName = String(cString: interface!.pointee.ifa_name)
+//            let interfaceAddress = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface?.pointee.ifa_addr).pointee.sin_addr))
+//            let interfaceNetmask = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface?.pointee.ifa_netmask).pointee.sin_addr))
 //            //ifa_dstaddr /* P2P interface destination */
 //            //The ifa_dstaddr field references the destination address on a P2P inter-face, interface,
 //            //face, if one exists, otherwise it contains the broadcast address.
-//            let interfaceBroadcast = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface.pointee.ifa_dstaddr).pointee.sin_addr))
+//            let interfaceBroadcast = String.fromCString(inet_ntoa(UnsafeMutablePointer<sockaddr_in>(interface?.pointee.ifa_dstaddr).pointee.sin_addr))
 //            
 //            if let name = interfaceName {
 //                information[name] = [interfaceAddress!,interfaceNetmask!,interfaceBroadcast!]
